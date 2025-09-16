@@ -1,4 +1,4 @@
-export class FinPartida extends Phaser.Scene{
+export class FinPartida extends Phaser.Scene{ //cuando se termina la partida 
 
 constructor(){
     super('FinPartida');

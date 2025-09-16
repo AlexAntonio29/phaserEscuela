@@ -1,4 +1,4 @@
-export class StartGame extends Phaser.Scene{
+export class StartGame extends Phaser.Scene{//cuando inicia la partida
 
     constructor(){
         super('StartGame');
