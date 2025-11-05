@@ -3,11 +3,24 @@ import {StartGame} from './scene/StartGame.js'
 import { FinPartida } from './scene/FinPartida.js';
 
 const config={ //configuracion del escenario
-    width: 600,//tamaño de ancho
-    height:400,//tamaño de largo
-    parent: "container",//tipo contenedor
-    type: Phaser.AUTO,
-    scene:[MenuPrincipal,StartGame,FinPartida]//escenas se ejecutan por orden
+    width: document.documentElement.clientWidth,//tamaño de ancho
+    height:document.documentElement.clientHeight,//tamaño de largo
+    parent: "container", //tipo contenedor
+    pixelArt:false,
+    type: Phaser.CANVAS,  
+
+    physics: {
+    default: 'arcade',
+    arcade: {
+      debug: false
+    }
+  },
+   /* scene:[MenuPrincipal,StartGame,FinPartida] //escenas se ejecutan por orden*/
+
+ /*   //EL APARTADO DE ARRIBA ES EL CORRECTO CORRERE ESTA SCENE PORQUE TRABAJARE CON StartGame*/
+   
+ scene:[MenuPrincipal,StartGame,FinPartida]
+    
 
 }
 
@@ -19,6 +32,13 @@ function preload(){
 
 function create(){
     console.log("Create");
+
+    window.addEventListener('resize',()=>{
+      const nuevoAncho=window.innerWidth;
+      const nuevoAltura=window.innerHeight;
+    })
+
+  
 }
 
 function update(time, delta){

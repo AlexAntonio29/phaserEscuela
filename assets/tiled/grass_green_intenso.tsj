@@ -1,0 +1,14 @@
+{ "columns":2,
+ "image":"32\/Pipoya RPG Tileset 32x32\/[A]_type2\/[A]Water6_pipo.png",
+ "imageheight":96,
+ "imagewidth":64,
+ "margin":0,
+ "name":"grass_green_intenso",
+ "spacing":0,
+ "tilecount":6,
+ "tiledversion":"1.11.2",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":"1.10"
+}

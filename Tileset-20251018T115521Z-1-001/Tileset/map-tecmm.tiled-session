@@ -1,0 +1,76 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "Pipoya RPG Tileset 32x32/SampleMap/LightShadow_pipo.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Pipoya RPG Tileset 32x32/SampleMap/[A]Dirt_pipo.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Pipoya RPG Tileset 32x32/SampleMap/[A]Flower_pipo.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Pipoya RPG Tileset 32x32/SampleMap/[A]Grass_pipo.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Pipoya RPG Tileset 32x32/SampleMap/[A]Wall-Up_pipo.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Pipoya RPG Tileset 32x32/SampleMap/[A]WaterFall_pipo.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Pipoya RPG Tileset 32x32/SampleMap/[A]Water_pipo.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Pipoya RPG Tileset 32x32/SampleMap/[Base]BaseChip_pipo.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx": {
+            "scale": 0.4012760416666667,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 933.2727626711662,
+                "y": 1062.8593679018752
+            }
+        },
+        "Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx#[Base]BaseChip_pipo": {
+            "scaleInDock": 1
+        }
+    },
+    "last.externalTilesetPath": "/Users/juanarvizu/Library/CloudStorage/GoogleDrive-za230111367@zapopan.tecmm.edu.mx/Shared drives/PROYECTO_TECCER/Tileset/Pipoya RPG Tileset 32x32/SampleMap",
+    "last.imagePath": "/Users/juanarvizu/Library/CloudStorage/GoogleDrive-za230111367@zapopan.tecmm.edu.mx/Shared drives/PROYECTO_TECCER/Tileset/Pipoya RPG Tileset 32x32",
+    "map.fixedSize": false,
+    "map.lastUsedFormat": "tmx",
+    "map.width": 2,
+    "openFiles": [
+    ],
+    "project": "map-tecmm.tiled-project",
+    "recentFiles": [
+        "Pipoya RPG Tileset 32x32/SampleMap/[A]Dirt_pipo.tsx",
+        "Pipoya RPG Tileset 32x32/SampleMap/[A]WaterFall_pipo.tsx",
+        "Pipoya RPG Tileset 32x32/SampleMap/LightShadow_pipo.tsx",
+        "Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx",
+        "Pipoya RPG Tileset 32x32/SampleMap/[Base]BaseChip_pipo.tsx",
+        "Pipoya RPG Tileset 32x32/SampleMap/[A]Water_pipo.tsx",
+        "Pipoya RPG Tileset 32x32/SampleMap/[A]Wall-Up_pipo.tsx",
+        "Pipoya RPG Tileset 32x32/SampleMap/[A]Grass_pipo.tsx",
+        "Pipoya RPG Tileset 32x32/SampleMap/[A]Flower_pipo.tsx"
+    ],
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
+    "tileset.lastUsedFormat": "tsx"
+}

@@ -1,0 +1,302 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "U:/Escritorio/mapita.tmx",
+    "expandedProjectPaths": [
+        "32/Pipoya RPG Tileset 32x32",
+        "32",
+        ".",
+        "32/Pipoya RPG Tileset 32x32/SampleMap"
+    ],
+    "file.lastUsedOpenFilter": "Todos los archivos (*)",
+    "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "#map-tecmm": {
+            "scaleInDock": 1
+        },
+        "#texture": {
+            "scaleInDock": 1
+        },
+        "#tiles_texture": {
+            "scaleInDock": 1
+        },
+        "32/Pipoya RPG Tileset 32x32/SampleMap/[A]Flower_pipo.tsx": {
+            "scaleInDock": 1
+        },
+        "32/Pipoya RPG Tileset 32x32/SampleMap/[A]Grass_pipo.tsx": {
+            "scaleInDock": 1
+        },
+        "32/Pipoya RPG Tileset 32x32/SampleMap/[A]WaterFall_pipo.tsx": {
+            "scaleInDock": 1
+        },
+        "32/Pipoya RPG Tileset 32x32/SampleMap/[A]Water_pipo.tsx": {
+            "scaleInDock": 1
+        },
+        "32/Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 191.33333333333337,
+                "y": 409.99999999999994
+            }
+        },
+        "32/Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx#[A]Flower_pipo": {
+            "scaleInDock": 1
+        },
+        "32/Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx#[A]Grass_pipo": {
+            "scaleInDock": 1
+        },
+        "32/Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx#[A]WaterFall_pipo": {
+            "scaleInDock": 1
+        },
+        "32/Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx#[A]Water_pipo": {
+            "scaleInDock": 1
+        },
+        "32/Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx#[Base]BaseChip_pipo": {
+            "scaleInDock": 1
+        },
+        "U:/../map-tecmm.tsx": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/PhaserEscuela/Tileset-20251018T115521Z-1-001/Tileset/Pipoya RPG Tileset 32x32/SampleMap/MAPITA.tmx": {
+            "scale": 0.125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 2320,
+                "y": 4868
+            }
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/PhaserEscuela/Tileset-20251018T115521Z-1-001/Tileset/Pipoya RPG Tileset 32x32/SampleMap/[A]Flower_pipo.tsx": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/PhaserEscuela/Tileset-20251018T115521Z-1-001/Tileset/Pipoya RPG Tileset 32x32/SampleMap/[A]Grass_pipo.tsx": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/PhaserEscuela/Tileset-20251018T115521Z-1-001/Tileset/Pipoya RPG Tileset 32x32/SampleMap/[A]WaterFall_pipo.tsx": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/PhaserEscuela/Tileset-20251018T115521Z-1-001/Tileset/Pipoya RPG Tileset 32x32/SampleMap/[A]Water_pipo.tsx": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/PhaserEscuela/Tileset-20251018T115521Z-1-001/Tileset/Pipoya RPG Tileset 32x32/SampleMap/[Base]BaseChip_pipo.tsx": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/PhaserEscuela/Tileset-20251018T115521Z-1-001/Tileset/Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx": {
+            "scale": 0.25,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 2190,
+                "y": 1014
+            }
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/PhaserEscuela/Tileset-20251018T115521Z-1-001/Tileset/Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx#[Base]BaseChip_pipo": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/PhaserEscuela/Tileset-20251018T115521Z-1-001/Tileset/map-tecmm.tsx": {
+            "scaleInDock": 1
+        },
+        "U:/Escritorio/MAPITA.json": {
+            "expandedGroupLayers": [
+                26
+            ],
+            "scale": 0.015625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 17600,
+                "y": 46368
+            }
+        },
+        "U:/Escritorio/[Base]BaseChip_pipo.tsx": {
+            "scaleInDock": 1
+        },
+        "U:/Escritorio/map-tecmm.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "U:/Escritorio/mapa_phaser/MAPITA.json": {
+            "expandedGroupLayers": [
+                26
+            ],
+            "scale": 0.125,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 13188,
+                "y": -340
+            }
+        },
+        "U:/Escritorio/mapa_phaser/MAPITA.json#[Base]BaseChip_pipo": {
+            "scaleInDock": 1
+        },
+        "U:/Escritorio/mapa_phaser/MAPITA.json#map-tecmm": {
+            "scaleInDock": 1
+        },
+        "U:/Escritorio/mapa_phaser/MAPITA.tmx": {
+            "expandedGroupLayers": [
+                26
+            ],
+            "scale": 0.015625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 0,
+                "y": -4768
+            }
+        },
+        "U:/Escritorio/mapa_phaser/[Base]BaseChip_pipo.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Escritorio/mapa_phaser/map-tecmm.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Escritorio/mapa_phaser/map_prueba.tsj": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Escritorio/mapa_phaser/map_prueva.tsj": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Escritorio/mapa_phaser/mapa/texture.tsj": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Escritorio/mapa_phaser/mapa_scene.json": {
+            "expandedGroupLayers": [
+                26
+            ],
+            "scale": 0.33,
+            "selectedLayer": 12,
+            "viewCenter": {
+                "x": 13289.39393939394,
+                "y": -134.84848484848476
+            }
+        },
+        "U:/Escritorio/mapa_phaser/mapa_scene.json#map-tecmm": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Escritorio/mapa_phaser/nuevo/MAPITA.json": {
+            "expandedGroupLayers": [
+                26
+            ],
+            "scale": 0.125,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 16,
+                "y": 1236
+            }
+        },
+        "U:/Escritorio/mapa_phaser/nuevo/MAPITA.json#[Base]BaseChip_pipo": {
+            "scaleInDock": 1
+        },
+        "U:/Escritorio/mapa_phaser/nuevo/MAPITA.json#map-tecmm": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "U:/Escritorio/mapa_phaser/nuevo/[Base]BaseChip_pipo.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Escritorio/mapa_phaser/nuevo/map-tecmm.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Escritorio/mapa_phaser/texture.tsj": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Escritorio/mapita.tmx": {
+            "expandedGroupLayers": [
+                26
+            ],
+            "scale": 0.20950692333671056,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -11.932779882324667,
+                "y": -14240.579511566053
+            }
+        },
+        "U:/map-tecmm.tsx": {
+            "scaleInDock": 1
+        },
+        "designs.tsj": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "grass_green.tsj": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "grass_green_intenso.tsj": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "mapaPrincipal.tmj": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 343,
+                "y": 386.5
+            }
+        },
+        "p1.tsj": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "pavimento.tsj": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "pavimento1.tsj": {
+            "scaleInDock": 1,
+            "scaleInEditor": 0.75
+        },
+        "pavimento2.tsj": {
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        },
+        "texture.tsj": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "U:/Escritorio/mapa_phaser",
+    "last.externalTilesetPath": "U:/Escritorio/mapa_phaser/nuevo",
+    "last.imagePath": "U:/Escritorio/mapa_phaser",
+    "map.fixedSize": false,
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "json",
+    "map.tileHeight": 32,
+    "map.tileWidth": 32,
+    "openFiles": [
+        "U:/Escritorio/mapa_phaser/mapa_scene.json",
+        "U:/Escritorio/mapita.tmx"
+    ],
+    "project": "mapa.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+        "U:/Escritorio/mapa_phaser/mapa_scene.json",
+        "U:/Escritorio/mapita.tmx",
+        "32/Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx",
+        "U:/Escritorio/mapa_phaser/nuevo/MAPITA.json",
+        "U:/Escritorio/mapa_phaser/nuevo/[Base]BaseChip_pipo.tsx",
+        "U:/Escritorio/mapa_phaser/nuevo/map-tecmm.tsx",
+        "U:/Escritorio/mapa_phaser/MAPITA.tmx",
+        "U:/Escritorio/mapa_phaser/MAPITA.json",
+        "U:/Escritorio/mapa_phaser/mapa/texture.tsj",
+        "U:/Escritorio/mapa_phaser/texture.tsj",
+        "U:/Escritorio/mapa_phaser/map_prueba.tsj",
+        "U:/Escritorio/mapa_phaser/map_prueva.tsj"
+    ],
+    "tileset.lastUsedFilter": "Archivos de conjuntos de patrones Tiled (*.tsx *.xml)",
+    "tileset.lastUsedFormat": "json"
+}

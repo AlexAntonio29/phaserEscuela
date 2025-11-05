@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="2" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="28" nextobjectid="1">
+ <tileset firstgid="1" source="map-tecmm.tsx"/>
+ <tileset firstgid="1065" source="[Base]BaseChip_pipo.tsx"/>
+ <imagelayer id="6" name="FONDO" locked="1">
+  <image source="../../MAPA_UNI.png"/>
+ </imagelayer>
+ <layer id="13" name="BACKGRASS" width="160" height="112">
+  <data encoding="csv"/>
+ </layer>
+ <layer id="24" name="GRASS" width="144" height="112">
+  <data encoding="csv"/>
+ </layer>
+ <layer id="25" name="TREE" width="48" height="64">
+  <data encoding="csv"/>
+ </layer>
+ <layer id="10" name="BASE_ROADS_CAR" width="160" height="112">
+  <data encoding="csv"/>
+ </layer>
+ <layer id="11" name="BASE_ROADS_WALK" width="144" height="112">
+  <data encoding="csv"/>
+ </layer>
+ <layer id="14" name="DOORS" width="176" height="112">
+  <data encoding="csv"/>
+ </layer>
+ <layer id="12" name="GRASS" width="0" height="0">
+  <data encoding="csv"/>
+ </layer>
+ <group id="26" name="DEPARTAMENTS">
+  <layer id="15" name="DEPARTAMENTS" width="96" height="32">
+   <data encoding="csv"/>
+  </layer>
+  <layer id="18" name="BASIC" width="32" height="16" offsetx="1376" offsety="608.002">
+   <data encoding="csv"/>
+  </layer>
+  <layer id="19" name="BASIC" width="32" height="16" offsetx="1440" offsety="-160.001">
+   <data encoding="csv"/>
+  </layer>
+  <layer id="20" name="BASIC" width="32" height="16" offsetx="671.489" offsety="-1055.95">
+   <data encoding="csv"/>
+  </layer>
+  <layer id="21" name="BASIC" width="32" height="16" offsetx="-448.506" offsety="-1024.08">
+   <data encoding="csv"/>
+  </layer>
+  <layer id="22" name="BASIC" width="64" height="48" offsetx="-1488.5" offsety="-1024.03">
+   <data encoding="csv"/>
+  </layer>
+ </group>
+ <layer id="27" name="WINDOWS" width="144" height="64">
+  <data encoding="csv"/>
+ </layer>
+</map>

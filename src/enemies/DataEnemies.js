@@ -1,0 +1,122 @@
+export const dataEnemigos=[
+    {
+        'id':'1',
+        'nombre':'Bote de basura',
+        'vida':'15',
+        'ataque':'5',
+        'puntos':Math.floor(Math.random() * 10) + 5,
+        'velocidad':'100',
+        'nivel':'1',
+        'diseno':'enemie1',
+        'movimiento':'5',
+        'ofzigzag':false
+    },
+    {
+        'id':'2',
+        'nombre':'Bolsa de basura',
+        'vida':'10',
+        'ataque':'10',
+        'puntos':Math.floor(Math.random() * 10) + 5,
+        'velocidad':'150',
+        'nivel':'1',
+        'diseno':'enemie2',
+        'movimiento':'5',
+        'ofzigzag':true
+    },
+    {
+        'id':'3',
+        'nombre':'Contaminador aereo',
+        'vida':'15',
+        'ataque':'5',
+        'puntos':Math.floor(Math.random() * 15) + 10,
+        'velocidad':'100',
+        'nivel':'1',
+        'diseno':'enemie3',
+        'movimiento':'5',
+        'ofzigzag':false
+    },
+    {
+        'id':'4',
+        'nombre':'Olvido verde',
+        'vida':'20',
+        'ataque':'15',
+        'puntos':Math.floor(Math.random() * 10) + 5,
+        'velocidad':'100',
+        'nivel':'2',
+        'diseno':'enemie4',
+        'movimiento':'5',
+        'ofzigzag':false
+    },,
+    {
+        'id':'5',
+        'nombre':'Incendiador',
+        'vida':'25',
+        'ataque':'10',
+        'puntos':Math.floor(Math.random() * 20) + 10,
+        'velocidad':'200',
+        'nivel':'2',
+        'diseno':'enemie5',
+        'movimiento':'5',
+        'ofzigzag':false
+    },
+    {
+        'id':'6',
+        'nombre':'Avispa madre',
+        'vida':'10',
+        'ataque':'15',
+        'puntos':Math.floor(Math.random() * 20) + 15,
+        'velocidad':'200',
+        'nivel':'2',
+        'diseno':'enemie6',
+        'movimiento':'5',
+        'ofzigzag':false
+    },
+    {
+        'id':'7',
+        'nombre':'Avispa hijo',
+        'vida':'10',
+        'ataque':'5',
+        'puntos':Math.floor(Math.random() * 5) + 3,
+        'velocidad':'100',
+        'nivel':'1',
+        'diseno':'enemie7',
+        'movimiento':'5',
+        'ofzigzag':false
+    },
+    {
+        'id':'8',
+        'nombre':'Vertedor toxico',
+        'vida':'30',
+        'ataque':'20',
+        'puntos':Math.floor(Math.random() * 30) + 15,
+        'velocidad':'200',
+        'nivel':'3',
+        'diseno':'enemie8',
+        'movimiento':'5',
+        'ofzigzag':false
+    },
+    {
+        'id':'9',
+        'nombre':'Silencio del bosque',
+        'vida':'30',
+        'ataque':'20',
+        'puntos':Math.floor(Math.random() * 20) + 10,
+        'velocidad':'150',
+        'nivel':'3',
+        'diseno':'enemie9',
+        'movimiento':'5',
+        'ofzigzag':false
+    },
+    {
+        'id':'10',
+        'nombre':'Eco Hueco',
+        'vida':'30',
+        'ataque':'20',
+        'puntos':Math.floor(Math.random() * 20) + 10,
+        'velocidad':'50',
+        'nivel':'3',
+        'diseno':'enemie10',
+        'movimiento':'5',
+        'ofzigzag':false
+    }
+];

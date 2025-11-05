@@ -1,0 +1,14 @@
+{ "columns":1,
+ "image":"32\/Pipoya RPG Tileset 32x32\/[A]_type1\/[A]Grass1-Grass3_pipo.png",
+ "imageheight":160,
+ "imagewidth":32,
+ "margin":0,
+ "name":"grass_green",
+ "spacing":0,
+ "tilecount":5,
+ "tiledversion":"1.11.2",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":"1.10"
+}
