@@ -7,6 +7,8 @@ export class player {
     this.texture = texture;
     this.x=x;
     this.y=y;
+    this.arma;
+
      this.estaAtacando=false;//para determinar que no genere muchos ataques sin limites
 
     // Crear sprite físico directamente
@@ -188,11 +190,19 @@ export class player {
 
   }
 
-  setArma(){
-    
+  setArma(arma){
+
+    this.arma=arma;
+    console.log("SetArma: ");
+    console.log(arma);
+
   }
 
-  setArma(){}
+  getArma(){
+    console.log("GetArma: ");
+    console.log(this.arma);
+    return this.arma;
+  }
 
   setAtaque(){
   }
@@ -202,22 +212,22 @@ export class player {
 
    
 
-   
-      
+    if(this.arma!=undefined) 
+
       if(Phaser.Input.Keyboard.JustDown((this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)))&&!this.estaAtacando){
          this.estaAtacando=true;
 
-       
-          
          console.log("dentro de ataque");
+
         let spriteAtaque=this.scene.add.sprite(0,0,this.componentesAtaque.textura)
       // .setOrigin(0.5,0)//abajo
        //.setOrigin(1,0.5)//izquierda
        //.setOrigin(0,0.5)//derecha
       //.setOrigin(0.5,1)//arriba
       
+    
         .setOrigin(this.componentesAtaque.x,this.componentesAtaque.y)
-        .setDisplaySize(60,60)
+        .setDisplaySize(Number(this.arma.width)*(this.arma.nivel),Number(this.arma.heigth)*(this.arma.nivel))
         .setPosition(this.sprite.x+this.sprite.displayWidth/2, this.sprite.y+this.sprite.displayHeight/2);
         
         
@@ -228,15 +238,39 @@ export class player {
 
        
         this.sprite.setVelocity(0);
-        
 
+
+
+        if((this.arma.largoAtaque))
+          switch(this.componentesAtaque.textura){
+
+            case 'ataqueLateralArriba':
+              spriteAtaque.body.setVelocityY(-this.arma.tiempoDisparo);
+
+            break;
+            case 'ataqueLateralAbajo':
+              spriteAtaque.body.setVelocityY(this.arma.tiempoDisparo);
+
+            break;
+            case 'ataqueLateralDerecha':
+              spriteAtaque.body.setVelocityX(this.arma.tiempoDisparo);
+            break;
+            case 'ataqueLateralIzquierda':
+              spriteAtaque.body.setVelocityX(-this.arma.tiempoDisparo);
+
+            break;
+            default:
+              break;
+        }
+/*
            listaEnemigos.map(enemigo=>{
           this.scene.physics.add.overlap(
           spriteAtaque,
           enemigo.getContainer(),
           ()=>{
             console.log("vida enemigo: "+enemigo.getVida());
-            enemigo.setVida(enemigo.getVida()-parseInt(this.ataque));
+            enemigo.setVida(parseInt((this.arma.ataque)*(this.arma.nivel)));
+            console.log("vida enemigo AQUI REVISA->: "+enemigo.getVida());
              if(enemigo.getVida()<=0){enemigo.getContainer().destroy();
               console.log("Enemigo Eliminado - Cantidad: "+ listaEnemigos.length);
                const index = listaEnemigos.indexOf(enemigo);
@@ -248,19 +282,43 @@ export class player {
 
           // contacto[n]=false;
 
-           
-          
-           
-
-          
               }, null, this
               );
-                })
+                })*/
+
+                
+this.grupoEnemigos = this.scene.physics.add.group();
+
+listaEnemigos.forEach(enemigo => {
+  this.grupoEnemigos.add(enemigo.getContainer());
+});
+
+this.scene.physics.add.overlap(spriteAtaque, this.grupoEnemigos, (ataque, enemigoSprite) => {
+  const enemigo = listaEnemigos.find(e => e.getContainer() === enemigoSprite);
+  if (!enemigo) return;
+
+  if(enemigo.golpeado) return;
+  enemigo.golpeado=true;
+
+  console.log("vida enemigo: " + enemigo.getVida());
+  enemigo.setVida(parseInt(this.arma.ataque * this.arma.nivel));
+
+  if (enemigo.getVida() <= 0) {
+    enemigo.getContainer().destroy();
+    const index = listaEnemigos.indexOf(enemigo);
+              if (index !== -1) listaEnemigos.splice(index, 1);
+    console.log("Enemigo Eliminado - Cantidad: " + listaEnemigos.length);
+  } else {
+    empujar(spriteAtaque, enemigo.getContainer(), n, contacto, this.scene);
+    enemigo.setGolpeado();
+  }
+}, null, this);
+                
 
                  //contacto[n]=false;
       
 
-       this.scene.time.delayedCall(250, () => {
+       this.scene.time.delayedCall(this.arma.velocidad, () => {
     this.estaAtacando=false;
     spriteAtaque.destroy();
     

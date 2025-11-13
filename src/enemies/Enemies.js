@@ -1,17 +1,22 @@
 export class Enemies{
 
     constructor(scene, dataEnemie, x=0,y=0){
+
+      
         this.scene=scene;
         this.dataEnemie=dataEnemie;
         this.velocidad=Math.floor(Math.random() * ((Number(this.dataEnemie.velocidad)) - (Number(this.dataEnemie.velocidad)-30) + 1)) + (Number(this.dataEnemie.velocidad)-30);
 
-        this.vida=dataEnemie.vida;
+        this.vida=Number(dataEnemie.vida);
         this.x=x;
         this.y=y;
+
+        this.golpeado=false;
 
         //console.log("escena fisica: "+this.scene.physics);
 
         this.setBody();
+        //this.enemigo.play('enemigoCamina');
 
     }
 
@@ -20,8 +25,8 @@ export class Enemies{
         return this.enemigo;
     }
 
-    setVida(vida){
-      this.vida=parseInt(vida);
+    setVida(n){
+      this.vida=this.vida-n;
 
     }
 
@@ -30,15 +35,49 @@ export class Enemies{
     }
 
     setBody(){
+
+      
+        this.scene.anims.create({
+        key: this.dataEnemie.diseno+"_camina",
+        frames: this.scene.anims.generateFrameNumbers(this.dataEnemie.diseno, { start: 0, end: 3 }),
+        frameRate: 6,
+        repeat: -1
+          });
+
+
         this.enemigo=this.scene.physics.add.sprite(0,0,this.dataEnemie.diseno)
         .setOrigin(0)
-        .setDisplaySize(40,40)
+        .setDisplaySize(this.dataEnemie.width,this.dataEnemie.height)
         .setPosition(this.x,this.y);
         
         //this.enemigo.body.setSize(200, 200);
         //this.enemigo.body.setOffset(0, 0);
         this.enemigo.body.setCollideWorldBounds(true);
 
+        this.enemigo.play(this.dataEnemie.diseno+"_camina");
+        
+
+    }
+
+    setGolpeado(){
+      if (!this.enemigo || !this.enemigo.scene) return;
+      this.scene.anims.create({
+        key: this.dataEnemie.diseno+"_golpeado",
+        frames: this.scene.anims.generateFrameNumbers(this.dataEnemie.diseno, { start: 4, end: 4 }),
+        frameRate: 6,
+        repeat: -1
+          });
+
+      
+      this.enemigo.play(this.dataEnemie.diseno+"_golpeado");
+      
+
+      this.scene.time.delayedCall(500,()=>{ 
+         if (this.enemigo && this.enemigo.scene && !this.enemigo.destroyed){
+          this.enemigo.play(this.dataEnemie.diseno+"_camina");}
+          this.golpeado=false;
+      }
+    );
     }
 
     setEnemiePosition(x,y){
@@ -159,6 +198,7 @@ export class Enemies{
     }
 
     setMuerteEnemigo(){
+      
         this.enemigo.destroy();
     // this.container.destroy();
     }

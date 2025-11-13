@@ -13,7 +13,8 @@ bStart(){
   fontSize: '32px',
   fill: '#000',
   backgroundColor: '#fff',
-  padding: { x: 10, y: 5 }
+  padding: { x: 50, y: 20 },
+  fontFamily:this.fontText
 })
 .setInteractive()
 .on('pointerdown', () => {
@@ -27,6 +28,7 @@ boton.setPosition(((this.widthPantalla)/2)-boton.width/2,(this.heightPantalla/2)
 
 
   preload(){
+    this.fontText='FontArcade3'
     this.widthPantalla=this.sys.game.config.width;
     this.heightPantalla=this.sys.game.config.height;
     console.log("Preload "+this.scene.key);

@@ -6,7 +6,7 @@ import {dataEnemigos} from "../enemies/DataEnemies.js"
 import { Enemies } from "../enemies/Enemies.js";
 import { empujar } from "../funciones/empujar.js";
 import { itemTiempo } from "../items/ItemTiempo.js";
-
+import { armas } from "../items/DataItemsPotenciadores.js";
 
 export class StartGame extends Phaser.Scene{//cuando inicia la partida
 
@@ -15,13 +15,18 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
         //console.log("Estoy en StartGame");
 
     }
-
-//aqui cargo todos los archivos y objetos necesarios antes de que inicie el escenario
-    preload(){
+    //aqui se cargan las variables globales desde preload()
+    cargarVariablesGlobales(){
 
       this.tiempo=100;
       this.tiempoProgresivo=0;//el tiempo progresivo sirve para llevar el tiempo siempre adelante
       this.tiempoParaCrearEnemigos=10;
+      //agregar arma
+      this.armas=armas;
+
+      //fuente del texto
+
+      this.fontText='FontArcade3';
    // console.log("Preload "+this.scene.key);
       this.widthPantalla=this.sys.game.config.width;
       this.heightPantalla=this.sys.game.config.height;
@@ -41,7 +46,22 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
 
     this.estaAtacando=false;//esto me sirve para generar una condicional de tiempo de ataque asi no genera errores
 
-    //Agregar efectos
+     this.cantidadRelojes=20;
+
+       //TODO REFEREIDO A ENEMIGOS
+
+   this.listaEnemigos=[];
+    
+    this.puntosCreacionEnemigo=10;
+    this.topeCreacionEnemigos=10;
+
+    this.getPotenciadorPuntos=200;
+    this.puntosPotenciadorAcumulador=1;
+    }
+
+    cargarImagenes(){
+      
+      //Agregar efectos
 
     this.load.image("ataqueLateralAbajo","./assets/effect/ataqueLateralAbajo.png");
     this.load.image("ataqueLateralArriba","./assets/effect/ataqueLateralArriba.png");
@@ -71,30 +91,46 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
 
    //Textura de tiempo
    this.load.image("reloj","./assets/items/otrosItems/reloj.png");
-   this.cantidadRelojes=20;
-
+  
 
    //enemigos
 
-   this.load.image('enemie1',"./assets/enemies/enemie1.png");
+  // this.load.image('enemie1',"./assets/enemies/enemie1.png");
 
-   //dataitems enemigos
+  //textura armas
 
-   //TODO REFEREIDO A ENEMIGOS
+  for(let i=0;i<armas.length;i++)
+    this.load.image(armas[i].diseno,"./assets/potenciadores/armas/"+(i+1)+".png"); 
 
-   this.listaEnemigos=[];
-    
-    this.puntosCreacionEnemigo=10;
-    this.topeCreacionEnemigos=10;
+    }
 
-    this.getPotenciadorPuntos=200;
-    this.puntosPotenciadorAcumulador=1;
-    
+    cargarAnimaciones(){
+
+      for(let i=0;i<=2;i++){
+
+      this.load.spritesheet(dataEnemigos[i].diseno, "./assets/enemies/"+dataEnemigos[i].diseno+".png", {
+  frameWidth: 128,
+  frameHeight: 128
+});
+
+console.log("Creado "+dataEnemigos[i].diseno+" de directorio: ./assets/enemies/"+dataEnemigos[i].diseno+".png");
+
+}
 
 
+//this.load.image(dataEnemigos[0].diseno+'_golpeado',"./assets/enemies/"+(dataEnemigos[0].diseno)+"_golpeado.png");
 
 
+    }
 
+//aqui cargo todos los archivos y objetos necesarios antes de que inicie el escenario
+    preload(){
+
+      this.cargarVariablesGlobales();
+      
+      this.cargarImagenes();
+
+      this.cargarAnimaciones();
 }
 
 
@@ -254,15 +290,31 @@ crearItems(n){
 
 //METODOS DEL ENEMIGO
 
+crearEnemigoPorPuntos(){
+  let valor=0;
+
+valor=Math.random() < 0.5 ? 0 : 1;
+
+return valor;
+
+}
+
 //Crear enemigo
 crearEnemigo(n=1){
+
+
+
+
   if(n!==0){
     for(let i=0;i<n;i++){
+
+      let valor=Math.floor(Math.random() * 3) + 0;
+      
    
    let x=Math.floor(Math.random() * ((this.widthEscenario-30) - 0 + 1)) + 0;
     let y=Math.floor(Math.random() * ((this.heightEscenario-30) - 0 + 1)) + 0;
    
-    this.listaEnemigos.push(new Enemies(this,dataEnemigos[0],x,y));
+    this.listaEnemigos.push(new Enemies(this,JSON.parse(JSON.stringify(dataEnemigos[valor])),x,y));
     
     /*
     this.listaEnemigos.map(enemigo=>{
@@ -278,7 +330,7 @@ crearEnemigo(n=1){
     });*/
   }
 
-  console.log("Creacion enemigo - Cantidad: "+ this.listaEnemigos.length);
+  
    
 
      this.collisionPlayerEnemigo();
@@ -486,11 +538,7 @@ if(this.player && this.arboles){
   console.log("Dentro de player y arbol");
 this.physics.add.collider(this.player.getContainer(),this.arboles);
 }
-}
-
-
-
-
+}//s
 //colision para cuando el player recoge el itemBasura
       collisionRecogerItemBasura(){
 
@@ -501,6 +549,10 @@ this.physics.add.collider(this.player.getContainer(),this.arboles);
         this.player.getContainer(),
         item.cuerpo.getContainer(),
         ()=>{
+
+          this.puntos=Number(this.puntaje.text);
+
+          console.log("AQUI2->"+this.puntos);
 
           
           //organizar puntos en items
@@ -537,12 +589,13 @@ this.physics.add.collider(this.player.getContainer(),this.arboles);
             itemsInorganicos.map(item=>{
                  puntosTemporales=puntosTemporales+(parseInt(item.cantidad)*parseInt(item.puntos));
             });
-            this.puntos=puntosTemporales;
+            console.log("AQUI->"+this.puntos)
+            this.puntos+=Number(item.puntos);//puntosTemporales;
 
             //this.puntos=parseInt(this.puntos)+parseInt(item.puntos);
             console.log("puntos: "+this.puntos);
             
-            this.puntaje.setText("Puntos: "+(this.puntos));
+            this.puntaje.setText((this.puntos));
             //Al superar cierta cantidad de puntos aparecera un nuevo enemigo
              if(parseInt(this.puntos) >this.puntosCreacionEnemigo){
                
@@ -551,7 +604,7 @@ this.physics.add.collider(this.player.getContainer(),this.arboles);
              this.topeCreacionEnemigos+=15;
             }
 
-            if(this.puntos>=this.getPotenciadorPuntos) this.getPotenciador();
+            if(this.puntos>=this.getPotenciadorPuntos)  this.getPotenciador();
             //this.crearEnemigo(this.topeCreacionEnemigos-this.listaEnemigos.length);
         }
     );
@@ -560,32 +613,20 @@ this.physics.add.collider(this.player.getContainer(),this.arboles);
 
     
 }  
+
+
+
     //ventanaPause para escoger potenciador
 
     getPotenciador(){//Es la arma o potenciador que obtiene el personaje
+      this.scene.pause();
       
 
       this.getPotenciadorPuntos+=200*this.puntosPotenciadorAcumulador;
 
-      this.puntosPotenciadorAcumulador++;
-  let hudContainerPotenciador=this.add.container(0,0).setScrollFactor(0);
-//Fondo semitransparente que servira para una mejor visualizacion
-  let hudBackgroundPotenciador= this.add.rectangle(0,0,this.widthPantalla-(this.widthPantalla/10),this.heightPantalla-(this.heightPantalla/10),0x000000,0.5)
-    .setOrigin(0)
-    .setStrokeStyle(2,0xffffff)
-    ;
+      this.puntosPotenciadorAcumulador++;  
 
-
-    let centrarHorizontal=(this.widthPantalla/2)-(hudBackgroundPotenciador.width/2);
-    let centrarVertical=(this.heightPantalla/2)-(hudBackgroundPotenciador.height/2);
-    hudBackgroundPotenciador.setPosition(centrarHorizontal,centrarVertical);
-
-//union de los puntos y cronometro al background para que este todo junto
-    hudContainerPotenciador.add(hudBackgroundPotenciador);
-
-
-    
-      
+this.scene.launch('ScenePotenciador',{scene:this.scene,puntos:this.puntos,player:this.player,puntaje:this.puntaje,armas:this.armas});
 
     }
 
@@ -650,6 +691,9 @@ depurarColisiones() {
   }
 }
 
+
+
+
 //creacion de la camara
 crearCamera(){
     this.cameras.main;
@@ -676,10 +720,19 @@ crearHUD(){
     .setOrigin(0)
     .setStrokeStyle(2,0xffffff);
 
-    this.hudPuntos();
+ let textoPuntos= this.add.text(16,16,"Puntos: ",{
+        fontSize: '15px',
+        fontFamily:this.fontText,
+        fill: '#fff'
+
+    });
+    this.hudPuntos(textoPuntos);
     this.hudCronometro();
+
+   
 //union de los puntos y cronometro al background para que este todo junto
     this.hudContainer.add(this.hudBackground);
+    this.hudContainer.add(textoPuntos);
     this.hudContainer.add(this.puntaje);
     this.hudContainer.add(this.cronometro);
 
@@ -696,7 +749,9 @@ crearHUD(){
    this.hudContainerMochila=scene.add.container(this.widthPantalla-this.hudBackgroundMochila.width-1,0).setScrollFactor(0);
    
 
-    this.tituloMochilaItems=this.add.text(16,16,"Organica Inorganica").setOrigin(0);
+    this.tituloMochilaItems=this.add.text(16,16,"Organica Inorganica",{
+      fontFamily:this.fontText
+    }).setOrigin(0);
 
     //Aqui se agrega la cantidad de items de cada tipo y categoria
     this.hudContainerMochila.add(this.hudBackgroundMochila);
@@ -714,7 +769,9 @@ crearHUD(){
       const imageItem="item_basura"+item.id;
      
       
-      let hudCantidadTexto=this.add.text(this.tamañoTextoStandard,this.tamañoTextoStandard, item.cantidad+" x ")
+      let hudCantidadTexto=this.add.text(this.tamañoTextoStandard,this.tamañoTextoStandard, item.cantidad+" x ",{
+        fontFamily:this.fontText
+      })
       .setOrigin(0);
 
       
@@ -748,7 +805,9 @@ crearHUD(){
       const imageItem="item_basura"+(parseInt(item.id)+6);
      
       
-      let hudCantidadTexto=this.add.text(this.tamañoTextoStandard,this.tamañoTextoStandard, item.cantidad+" x ")
+      let hudCantidadTexto=this.add.text(this.tamañoTextoStandard,this.tamañoTextoStandard, item.cantidad+" x ",{
+        fontFamily:this.fontText
+      })
       .setOrigin(0);
       let hudImagenItem=this.add.image(hudCantidadTexto.width+10,hudCantidadTexto.height-3,imageItem).setOrigin(0);
       hudImagenItem.setDisplaySize(this.tamañoImagenItemStandard,this.tamañoImagenItemStandard);
@@ -762,14 +821,14 @@ crearHUD(){
       });
 }
 //donde muestra los puntos acumulados
-    hudPuntos(){
+    hudPuntos(textoPuntos){
   
-    this.puntaje= this.add.text(16,16,'Puntos: '+this.puntos,{
+    this.puntaje= this.add.text(16,16,this.puntos,{
         fontSize: '15px',
-        fontFamily:"Arial",
+        fontFamily:this.fontText,
         fill: '#fff'
 
-    });
+    }).setPosition(textoPuntos.x+textoPuntos.width+10,textoPuntos.y);
 }
 //donde muetra el cronometro
     hudCronometro(){
@@ -778,7 +837,7 @@ crearHUD(){
     //CREAR HUD de tiempo
     this.cronometro= this.add.text(16,16,'Tiempo: '+this.tiempo,{
         fontSize: '15px',
-        fontFamily: 'Arial',
+        fontFamily: this.fontText,
         fill: '#fff'
     });
     
@@ -808,7 +867,7 @@ crearHUD(){
   loop: true
 });
 
-    this.cronometro.setPosition(this.puntaje.width+100, this.puntaje.height);
+    this.cronometro.setPosition(this.puntaje.width+this.puntaje.x+20, this.puntaje.height);
 }
 
 
@@ -856,6 +915,8 @@ create(){
 
    //crear HUD
     this.crearHUD();
+
+    //this.crearAnimaciones();
 
     
 
