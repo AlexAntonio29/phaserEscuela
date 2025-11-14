@@ -1,13 +1,15 @@
 import  {empujar}  from "../funciones/empujar.js";
 export class player {
 
-  constructor(scene, texture, x = 20, y = 25) {
+  constructor(scene, texture, x = 20, y = 25, controles) {
+
     this.vida=3;
     this.scene = scene;
     this.texture = texture;
     this.x=x;
     this.y=y;
     this.arma;
+    this.controles=controles;
 
      this.estaAtacando=false;//para determinar que no genere muchos ataques sin limites
 
@@ -93,7 +95,9 @@ export class player {
       
       // console.log("velocidadparteDiagonal: "+velocidadDiagonal);
 
-  if(this.scene.cursor.up.isDown && this.scene.cursor.right.isDown){
+   
+
+  if((this.scene.cursor.up.isDown && this.scene.cursor.right.isDown)||this.controles.arribaDerecha ){
     // console.log("UP + RIGHT");
 
       
@@ -104,18 +108,18 @@ export class player {
      this.sprite.setVelocityX(velocidadDiagonal);
   }
 
-  else if(this.scene.cursor.up.isDown && this.scene.cursor.left.isDown){
+  else if((this.scene.cursor.up.isDown && this.scene.cursor.left.isDown)||this.controles.arribaIzquierda){
    // console.log("UP + LEFT");
      this.sprite.setVelocityY(-velocidadDiagonal);
      this.sprite.setVelocityX(-velocidadDiagonal);
   }
-  else if(this.scene.cursor.down.isDown && this.scene.cursor.left.isDown){
+  else if((this.scene.cursor.down.isDown && this.scene.cursor.left.isDown)||this.controles.abajoIzquieda){
    // console.log("DOWN + LEFT");
      this.sprite.setVelocityY(velocidadDiagonal);
      this.sprite.setVelocityX(-velocidadDiagonal);
   }
 
-  else if(this.scene.cursor.down.isDown && this.scene.cursor.right.isDown){
+  else if((this.scene.cursor.down.isDown && this.scene.cursor.right.isDown)||this.controles.abajoDerecha){
      //console.log("DOWN + RIGHT");
      
      this.sprite.setVelocityY(velocidadDiagonal);
@@ -123,7 +127,7 @@ export class player {
   }
   else
 //movimientos normales
- if(this.scene.cursor.up.isDown){
+ if(this.scene.cursor.up.isDown||this.controles.arriba){
 //.setOrigin(0.5,1)//arriba
   this.componentesAtaque.x=0.5;
   this.componentesAtaque.y=1;
@@ -140,7 +144,7 @@ export class player {
 
     //console.log("UP");
     this.sprite.setVelocityY(-velocidad);
- }else if(this.scene.cursor.down.isDown){
+ }else if(this.scene.cursor.down.isDown||this.controles.abajo){
 // .setOrigin(0.5,0)//abajo
    this.componentesAtaque.x=0.5;
   this.componentesAtaque.y=0;
@@ -155,7 +159,7 @@ export class player {
   
      //console.log("DOWN");
     this.sprite.setVelocityY(velocidad);
- }else if(this.scene.cursor.left.isDown){
+ }else if(this.scene.cursor.left.isDown||this.controles.izquierda){
   
   //.setOrigin(1,0.5)//izquierda
   this.componentesAtaque.x=1;
@@ -170,7 +174,7 @@ export class player {
    
    //  console.log("LEFT");
     this.sprite.setVelocityX(-velocidad);
- }else if(this.scene.cursor.right.isDown){
+ }else if(this.scene.cursor.right.isDown||this.controles.derecha){
 
   //.setOrigin(0,0.5)//derecha
   this.componentesAtaque.x=0;
@@ -214,7 +218,7 @@ export class player {
 
     if(this.arma!=undefined) 
 
-      if(Phaser.Input.Keyboard.JustDown((this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)))&&!this.estaAtacando){
+      if((Phaser.Input.Keyboard.JustDown((this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)))||this.controles.ataque)&&!this.estaAtacando){
          this.estaAtacando=true;
 
          console.log("dentro de ataque");
@@ -245,18 +249,18 @@ export class player {
           switch(this.componentesAtaque.textura){
 
             case 'ataqueLateralArriba':
-              spriteAtaque.body.setVelocityY(-this.arma.tiempoDisparo);
+              spriteAtaque.body.setVelocityY(-this.arma.tiempoDisparo*(this.arma.nivel));
 
             break;
             case 'ataqueLateralAbajo':
-              spriteAtaque.body.setVelocityY(this.arma.tiempoDisparo);
+              spriteAtaque.body.setVelocityY(this.arma.tiempoDisparo*(this.arma.nivel));
 
             break;
             case 'ataqueLateralDerecha':
-              spriteAtaque.body.setVelocityX(this.arma.tiempoDisparo);
+              spriteAtaque.body.setVelocityX(this.arma.tiempoDisparo*(this.arma.nivel));
             break;
             case 'ataqueLateralIzquierda':
-              spriteAtaque.body.setVelocityX(-this.arma.tiempoDisparo);
+              spriteAtaque.body.setVelocityX(-this.arma.tiempoDisparo*(this.arma.nivel));
 
             break;
             default:

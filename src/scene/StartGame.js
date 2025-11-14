@@ -59,6 +59,23 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
     this.puntosPotenciadorAcumulador=1;
     }
 
+    cargarBotonesTeclas(){  
+      this.controles = {
+  arriba: false,
+  abajo: false,
+  izquierda: false,
+  derecha: false,
+  arribaIzquierda:false,
+  arribaDerecha:false,
+  abajoIzquieda:false,
+  abajoDerecha:false,
+  ataque:false
+};
+
+
+    }
+  
+
     cargarImagenes(){
       
       //Agregar efectos
@@ -106,7 +123,7 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
 
     cargarAnimaciones(){
 
-      for(let i=0;i<=2;i++){
+      for(let i=0;i<=3;i++){
 
       this.load.spritesheet(dataEnemigos[i].diseno, "./assets/enemies/"+dataEnemigos[i].diseno+".png", {
   frameWidth: 128,
@@ -131,6 +148,10 @@ console.log("Creado "+dataEnemigos[i].diseno+" de directorio: ./assets/enemies/"
       this.cargarImagenes();
 
       this.cargarAnimaciones();
+
+      this.cargarBotonesTeclas();
+
+      
 }
 
 
@@ -308,7 +329,7 @@ crearEnemigo(n=1){
   if(n!==0){
     for(let i=0;i<n;i++){
 
-      let valor=Math.floor(Math.random() * 3) + 0;
+      let valor=Math.floor(Math.random() * 4) + 0;
       
    
    let x=Math.floor(Math.random() * ((this.widthEscenario-30) - 0 + 1)) + 0;
@@ -359,7 +380,8 @@ movimientosEnemigo(){
 
 getPlayer(){
 
-    this.player=new player(this, 'player');
+  
+    this.player=new player(this, 'player',20,25,this.controles);
   
 
    
@@ -879,6 +901,78 @@ finalizarPartida(n=""){
   this.scene.start('FinPartida',{puntos:this.puntos,mensaje:n});
 
 }
+  //carga de botones digitales
+  cargarBotones(){
+
+    let sizeBotones=(this.widthPantalla/10);
+     let division=2;
+
+    if(this.widthPantalla<this.heightPantalla) division=1.5;
+   
+
+      this.botonesPlayer={
+        'arriba': this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
+        'abajo': this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
+        'izquierda':this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
+        'derecha':this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
+        
+        'ataque':this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
+
+        'arribaIzquierda':this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
+        'arribaDerecha':this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
+        'abajoIzquierda':this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
+        'abajoDerecha':this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
+      }
+      console.log("Botones Creados");
+     this.botonesPlayer.arriba.setPosition(this.botonesPlayer.arriba.width+10,this.heightPantalla/division);
+     this.botonesPlayer.abajo.setPosition(this.botonesPlayer.arriba.width+10,(this.heightPantalla/division)+2*(this.botonesPlayer.abajo.height)+10);
+     this.botonesPlayer.izquierda.setPosition(this.botonesPlayer.abajo.x-this.botonesPlayer.abajo.width-5,(this.heightPantalla/division)+this.botonesPlayer.abajo.height+5);
+     this.botonesPlayer.derecha.setPosition(this.botonesPlayer.abajo.x+this.botonesPlayer.abajo.width+5,(this.heightPantalla/division)+this.botonesPlayer.abajo.height+5);
+
+     this.botonesPlayer.arribaIzquierda.setPosition(this.botonesPlayer.arriba.width+10-this.botonesPlayer.arriba.width-5,this.heightPantalla/division)
+     this.botonesPlayer.arribaDerecha.setPosition(this.botonesPlayer.arriba.width+10+this.botonesPlayer.arriba.width+5,this.heightPantalla/division)
+    
+     this.botonesPlayer.abajoIzquierda.setPosition(this.botonesPlayer.arriba.width+10-this.botonesPlayer.arriba.width-5,(this.heightPantalla/division)+2*(this.botonesPlayer.abajo.height)+10)
+     this.botonesPlayer.abajoDerecha.setPosition(this.botonesPlayer.arriba.width+10+this.botonesPlayer.arriba.width+5,(this.heightPantalla/division)+2*(this.botonesPlayer.abajo.height)+10)
+    
+    
+     this.botonesPlayer.ataque.setPosition(this.widthPantalla-(this.botonesPlayer.ataque.width)*2,this.heightPantalla/division);
+    
+    
+     this.botonesPlayer.arriba.on('pointerdown', () => this.controles.arriba = true);
+     this.botonesPlayer.arriba.on('pointerup',   () => this.controles.arriba = false);
+
+     this.botonesPlayer.abajo.on('pointerdown', () => this.controles.abajo = true);
+     this.botonesPlayer.abajo.on('pointerup',   () => this.controles.abajo = false);
+
+     this.botonesPlayer.izquierda.on('pointerdown', () => this.controles.izquierda = true);
+     this.botonesPlayer.izquierda.on('pointerup',   () => this.controles.izquierda = false);
+
+     this.botonesPlayer.derecha.on('pointerdown', () => this.controles.derecha = true);
+     this.botonesPlayer.derecha.on('pointerup',   () => this.controles.derecha = false);
+
+     this.botonesPlayer.arribaDerecha.on('pointerdown', () => this.controles.arribaDerecha = true);
+     this.botonesPlayer.arribaDerecha.on('pointerup',   () => this.controles.arribaDerecha = false);
+
+     this.botonesPlayer.arribaIzquierda.on('pointerdown', () => this.controles.arribaIzquierda = true);
+     this.botonesPlayer.arribaIzquierda.on('pointerup',   () => this.controles.arribaIzquierda = false);
+
+     this.botonesPlayer.abajoDerecha.on('pointerdown', () => this.controles.abajoDerecha = true);
+     this.botonesPlayer.abajoDerecha.on('pointerup',   () => this.controles.abajoDerecha = false);
+
+     this.botonesPlayer.abajoIzquierda.on('pointerdown', () => this.controles.abajoIzquieda = true);
+     this.botonesPlayer.abajoIzquierda.on('pointerup',   () => this.controles.abajoIzquieda = false);
+
+     this.botonesPlayer.ataque.on('pointerdown', () => this.controles.ataque= true);
+     this.botonesPlayer.ataque.on('pointerup',   () => this.controles.ataque = false);
+
+
+
+
+    
+    }
+
+    
 
 //El create es donde acomo las cosas para que tengan un orden
 create(){
@@ -917,6 +1011,7 @@ create(){
     this.crearHUD();
 
     //this.crearAnimaciones();
+    this.cargarBotones();
 
     
 

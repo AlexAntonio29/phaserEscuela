@@ -8,8 +8,8 @@ export const dataEnemigos=[
         'velocidad':100,
         'nivel':'1',
         'diseno':'enemie1',
-        'width':40,
-        'height':40,
+        'width':50,
+        'height':50,
         'movimiento':'5',
         'ofzigzag':false
     },
