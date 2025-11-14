@@ -915,7 +915,7 @@ finalizarPartida(n=""){
   cargarBotones(){
 
     let sizeBotones=(this.widthPantalla/10);
-     let division=3;
+     let division=2;
 
     if(this.widthPantalla<this.heightPantalla){ division=1.5; sizeBotones=(this.widthPantalla/6);}
    
@@ -940,6 +940,8 @@ finalizarPartida(n=""){
   
 });
 
+if(this.widthPantalla>=900){ this.botonesPlayer.ataque.setAlpha(0)}
+
 
     
     }
@@ -950,11 +952,17 @@ finalizarPartida(n=""){
       x: 100,
       y: 400,
       radius: 100,
-      base: this.add.circle(0, 0, 50, 0x888888),
-      thumb: this.add.circle(0, 0, 25, 0xcccccc),
+      base: this.add.circle(0, 0, 50, 0x888888,0.5),
+      thumb: this.add.circle(0, 0, 25, 0xcccccc,0.5),
 
 
 });
+
+if(this.widthPantalla>=900){ this.joyStick.base.setAlpha(0);
+                              this.joyStick.thumb.setAlpha(0);
+}
+
+
 //this.joyStick.setScrollFactor(0);
 
 this.joystickCursors = this.joyStick.createCursorKeys();
