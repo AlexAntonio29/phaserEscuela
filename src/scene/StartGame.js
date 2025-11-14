@@ -905,9 +905,9 @@ finalizarPartida(n=""){
   cargarBotones(){
 
     let sizeBotones=(this.widthPantalla/10);
-     let division=2;
+     let division=3;
 
-    if(this.widthPantalla<this.heightPantalla) division=1.5;
+    if(this.widthPantalla<this.heightPantalla){ division=1.5; sizeBotones=(this.widthPantalla/6);}
    
 
       this.botonesPlayer={
@@ -967,6 +967,19 @@ finalizarPartida(n=""){
      this.botonesPlayer.ataque.on('pointerup',   () => this.controles.ataque = false);
 
 
+      this.input.on('pointerup', () => {
+  // Al soltar el dedo en cualquier parte de la pantalla
+  this.controles.arriba = false;
+  this.controles.abajo = false;
+  this.controles.izquierda = false;
+  this.controles.derecha = false;
+  this.controles.ataque = false;
+  this.controles.arribaDerecha = false;
+  this.controles.arribaIzquierda = false;
+  this.controles.abajoDerecha = false;
+  this.controles.abajoIzquieda = false;
+  
+});
 
 
     
