@@ -1,7 +1,7 @@
 import  {empujar}  from "../funciones/empujar.js";
 export class player {
 
-  constructor(scene, texture, x = 20, y = 25, controles) {
+  constructor(scene, texture, x = 20, y = 25, joystick,controles) {
 
     this.vida=3;
     this.scene = scene;
@@ -9,6 +9,7 @@ export class player {
     this.x=x;
     this.y=y;
     this.arma;
+    this.joystick=joystick;
     this.controles=controles;
 
      this.estaAtacando=false;//para determinar que no genere muchos ataques sin limites
@@ -97,7 +98,7 @@ export class player {
 
    
 
-  if((this.scene.cursor.up.isDown && this.scene.cursor.right.isDown)||this.controles.arribaDerecha ){
+  if((this.scene.cursor.up.isDown && this.scene.cursor.right.isDown)||(this.joystick.up.isDown&&this.joystick.right.isDown)){
     // console.log("UP + RIGHT");
 
       
@@ -108,18 +109,18 @@ export class player {
      this.sprite.setVelocityX(velocidadDiagonal);
   }
 
-  else if((this.scene.cursor.up.isDown && this.scene.cursor.left.isDown)||this.controles.arribaIzquierda){
+  else if((this.scene.cursor.up.isDown && this.scene.cursor.left.isDown)||(this.joystick.up.isDown&&this.joystick.left.isDown)){
    // console.log("UP + LEFT");
      this.sprite.setVelocityY(-velocidadDiagonal);
      this.sprite.setVelocityX(-velocidadDiagonal);
   }
-  else if((this.scene.cursor.down.isDown && this.scene.cursor.left.isDown)||this.controles.abajoIzquieda){
+  else if((this.scene.cursor.down.isDown && this.scene.cursor.left.isDown)||(this.joystick.down.isDown&&this.joystick.left.isDown)){
    // console.log("DOWN + LEFT");
      this.sprite.setVelocityY(velocidadDiagonal);
      this.sprite.setVelocityX(-velocidadDiagonal);
   }
 
-  else if((this.scene.cursor.down.isDown && this.scene.cursor.right.isDown)||this.controles.abajoDerecha){
+  else if((this.scene.cursor.down.isDown && this.scene.cursor.right.isDown)||(this.joystick.down.isDown&&this.joystick.right.isDown)){
      //console.log("DOWN + RIGHT");
      
      this.sprite.setVelocityY(velocidadDiagonal);
@@ -127,7 +128,7 @@ export class player {
   }
   else
 //movimientos normales
- if(this.scene.cursor.up.isDown||this.controles.arriba){
+ if(this.scene.cursor.up.isDown||this.joystick.up.isDown){
 //.setOrigin(0.5,1)//arriba
   this.componentesAtaque.x=0.5;
   this.componentesAtaque.y=1;
@@ -144,7 +145,7 @@ export class player {
 
     //console.log("UP");
     this.sprite.setVelocityY(-velocidad);
- }else if(this.scene.cursor.down.isDown||this.controles.abajo){
+ }else if(this.scene.cursor.down.isDown||this.joystick.down.isDown){
 // .setOrigin(0.5,0)//abajo
    this.componentesAtaque.x=0.5;
   this.componentesAtaque.y=0;
@@ -159,7 +160,7 @@ export class player {
   
      //console.log("DOWN");
     this.sprite.setVelocityY(velocidad);
- }else if(this.scene.cursor.left.isDown||this.controles.izquierda){
+ }else if(this.scene.cursor.left.isDown||this.joystick.left.isDown){
   
   //.setOrigin(1,0.5)//izquierda
   this.componentesAtaque.x=1;
@@ -174,7 +175,7 @@ export class player {
    
    //  console.log("LEFT");
     this.sprite.setVelocityX(-velocidad);
- }else if(this.scene.cursor.right.isDown||this.controles.derecha){
+ }else if(this.scene.cursor.right.isDown||this.joystick.right.isDown){
 
   //.setOrigin(0,0.5)//derecha
   this.componentesAtaque.x=0;

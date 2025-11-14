@@ -61,14 +61,6 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
 
     cargarBotonesTeclas(){  
       this.controles = {
-  arriba: false,
-  abajo: false,
-  izquierda: false,
-  derecha: false,
-  arribaIzquierda:false,
-  arribaDerecha:false,
-  abajoIzquieda:false,
-  abajoDerecha:false,
   ataque:false
 };
 
@@ -140,8 +132,21 @@ console.log("Creado "+dataEnemigos[i].diseno+" de directorio: ./assets/enemies/"
 
     }
 
+    crearJoystick(){
+     
+console.log("En Joystick");
+    let url = 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexvirtualjoystickplugin.min.js';
+    this.load.plugin('rexvirtualjoystickplugin', url, true);
+     
+   
+
+    }
+
 //aqui cargo todos los archivos y objetos necesarios antes de que inicie el escenario
     preload(){
+
+       
+      
 
       this.cargarVariablesGlobales();
       
@@ -149,7 +154,12 @@ console.log("Creado "+dataEnemigos[i].diseno+" de directorio: ./assets/enemies/"
 
       this.cargarAnimaciones();
 
+      this.crearJoystick();
+
       this.cargarBotonesTeclas();
+   
+    
+     
 
       
 }
@@ -381,7 +391,7 @@ movimientosEnemigo(){
 getPlayer(){
 
   
-    this.player=new player(this, 'player',20,25,this.controles);
+    this.player=new player(this, 'player',20,25,this.joystickCursors, this.controles);
   
 
    
@@ -911,57 +921,13 @@ finalizarPartida(n=""){
    
 
       this.botonesPlayer={
-        'arriba': this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
-        'abajo': this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
-        'izquierda':this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
-        'derecha':this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
-        
         'ataque':this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
+                        }
 
-        'arribaIzquierda':this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
-        'arribaDerecha':this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
-        'abajoIzquierda':this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
-        'abajoDerecha':this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
-      }
-      console.log("Botones Creados");
-     this.botonesPlayer.arriba.setPosition(this.botonesPlayer.arriba.width+10,this.heightPantalla/division);
-     this.botonesPlayer.abajo.setPosition(this.botonesPlayer.arriba.width+10,(this.heightPantalla/division)+2*(this.botonesPlayer.abajo.height)+10);
-     this.botonesPlayer.izquierda.setPosition(this.botonesPlayer.abajo.x-this.botonesPlayer.abajo.width-5,(this.heightPantalla/division)+this.botonesPlayer.abajo.height+5);
-     this.botonesPlayer.derecha.setPosition(this.botonesPlayer.abajo.x+this.botonesPlayer.abajo.width+5,(this.heightPantalla/division)+this.botonesPlayer.abajo.height+5);
-
-     this.botonesPlayer.arribaIzquierda.setPosition(this.botonesPlayer.arriba.width+10-this.botonesPlayer.arriba.width-5,this.heightPantalla/division)
-     this.botonesPlayer.arribaDerecha.setPosition(this.botonesPlayer.arriba.width+10+this.botonesPlayer.arriba.width+5,this.heightPantalla/division)
-    
-     this.botonesPlayer.abajoIzquierda.setPosition(this.botonesPlayer.arriba.width+10-this.botonesPlayer.arriba.width-5,(this.heightPantalla/division)+2*(this.botonesPlayer.abajo.height)+10)
-     this.botonesPlayer.abajoDerecha.setPosition(this.botonesPlayer.arriba.width+10+this.botonesPlayer.arriba.width+5,(this.heightPantalla/division)+2*(this.botonesPlayer.abajo.height)+10)
-    
     
      this.botonesPlayer.ataque.setPosition(this.widthPantalla-(this.botonesPlayer.ataque.width)*2,this.heightPantalla/division);
     
-    
-     this.botonesPlayer.arriba.on('pointerdown', () => this.controles.arriba = true);
-     this.botonesPlayer.arriba.on('pointerup',   () => this.controles.arriba = false);
 
-     this.botonesPlayer.abajo.on('pointerdown', () => this.controles.abajo = true);
-     this.botonesPlayer.abajo.on('pointerup',   () => this.controles.abajo = false);
-
-     this.botonesPlayer.izquierda.on('pointerdown', () => this.controles.izquierda = true);
-     this.botonesPlayer.izquierda.on('pointerup',   () => this.controles.izquierda = false);
-
-     this.botonesPlayer.derecha.on('pointerdown', () => this.controles.derecha = true);
-     this.botonesPlayer.derecha.on('pointerup',   () => this.controles.derecha = false);
-
-     this.botonesPlayer.arribaDerecha.on('pointerdown', () => this.controles.arribaDerecha = true);
-     this.botonesPlayer.arribaDerecha.on('pointerup',   () => this.controles.arribaDerecha = false);
-
-     this.botonesPlayer.arribaIzquierda.on('pointerdown', () => this.controles.arribaIzquierda = true);
-     this.botonesPlayer.arribaIzquierda.on('pointerup',   () => this.controles.arribaIzquierda = false);
-
-     this.botonesPlayer.abajoDerecha.on('pointerdown', () => this.controles.abajoDerecha = true);
-     this.botonesPlayer.abajoDerecha.on('pointerup',   () => this.controles.abajoDerecha = false);
-
-     this.botonesPlayer.abajoIzquierda.on('pointerdown', () => this.controles.abajoIzquieda = true);
-     this.botonesPlayer.abajoIzquierda.on('pointerup',   () => this.controles.abajoIzquieda = false);
 
      this.botonesPlayer.ataque.on('pointerdown', () => this.controles.ataque= true);
      this.botonesPlayer.ataque.on('pointerup',   () => this.controles.ataque = false);
@@ -969,20 +935,29 @@ finalizarPartida(n=""){
 
       this.input.on('pointerup', () => {
   // Al soltar el dedo en cualquier parte de la pantalla
-  this.controles.arriba = false;
-  this.controles.abajo = false;
-  this.controles.izquierda = false;
-  this.controles.derecha = false;
+ 
   this.controles.ataque = false;
-  this.controles.arribaDerecha = false;
-  this.controles.arribaIzquierda = false;
-  this.controles.abajoDerecha = false;
-  this.controles.abajoIzquieda = false;
   
 });
 
 
     
+    }
+
+    cargarJoystick(){
+
+      this.joyStick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
+      x: 100,
+      y: 400,
+      radius: 100,
+      base: this.add.circle(0, 0, 50, 0x888888),
+      thumb: this.add.circle(0, 0, 25, 0xcccccc),
+
+
+});
+//this.joyStick.setScrollFactor(0);
+
+this.joystickCursors = this.joyStick.createCursorKeys();
     }
 
     
@@ -996,7 +971,7 @@ create(){
 
     
 
-   
+  
     
     //Generacion de escenario
     this.crearEscenario();
@@ -1009,6 +984,8 @@ create(){
     this.crearEdificios();
     this.crearArboles();
 
+     this.cargarBotones();
+    this.cargarJoystick();
     this.getPlayer();
     this.crearEnemigo();
 
@@ -1024,7 +1001,7 @@ create(){
     this.crearHUD();
 
     //this.crearAnimaciones();
-    this.cargarBotones();
+    
 
     
 
