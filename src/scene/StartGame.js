@@ -914,18 +914,18 @@ finalizarPartida(n=""){
   //carga de botones digitales
   cargarBotones(){
 
-    let sizeBotones=(this.widthPantalla/10);
+    let sizeBotones=(this.widthPantalla/20);
      let division=2;
 
-    if(this.widthPantalla<this.heightPantalla){ division=1.5; sizeBotones=(this.widthPantalla/6);}
-   
+    if(this.widthPantalla<this.heightPantalla){ division=1.5;sizeBotones=(this.widthPantalla/10);}
+   //this.add.circle(0, 0, 50, 0x888888,0.5)
 
       this.botonesPlayer={
-        'ataque':this.add.rectangle(0,0,sizeBotones,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
+        'ataque':this.add.circle(0,0,sizeBotones,0xffffff,0.5).setOrigin(0).setScrollFactor(0).setInteractive(),
                         }
 
     
-     this.botonesPlayer.ataque.setPosition(this.widthPantalla-(this.botonesPlayer.ataque.width)*2,this.heightPantalla/division);
+     this.botonesPlayer.ataque.setPosition(this.widthPantalla-(this.botonesPlayer.ataque.width)-10,this.heightPantalla/division);
     
 
 
@@ -947,10 +947,12 @@ if(this.widthPantalla>=900){ this.botonesPlayer.ataque.setAlpha(0)}
     }
 
     cargarJoystick(){
+      let division=2;
 
+    if(this.widthPantalla<this.heightPantalla){ division=1.5;}
       this.joyStick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
       x: 100,
-      y: 400,
+      y: this.heightPantalla/division,
       radius: 100,
       base: this.add.circle(0, 0, 50, 0x888888,0.5),
       thumb: this.add.circle(0, 0, 25, 0xcccccc,0.5),
