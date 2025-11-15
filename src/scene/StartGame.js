@@ -78,6 +78,8 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
     this.load.image("ataqueLateralIzquierda","./assets/effect/ataqueLateralIzquierda.png");
     
 
+    //imagen mochila
+    this.load.image('mochila','./assets/mochila.png');
    // this.load.image("croquis","./assets/croquis_escuela.png");
 
 
@@ -607,6 +609,7 @@ this.physics.add.collider(this.player.getContainer(),this.arboles);
             }
 
             this.hudContainerMochila.destroy();
+            this.hudBotonMochila.destroy();
             this.hudMochila(this);
 
 
@@ -851,6 +854,32 @@ crearHUD(){
 
       //-----------------------
       });
+
+      this.hudContainerMochila.visible=false;
+
+        this.hudBotonMochila=this.add.image(0,0,'mochila')
+        .setOrigin(0)
+        .setAlpha(0.5)
+        .setScale(0.5)
+        .setInteractive()
+        .setScrollFactor(0);
+
+        console.log("AQUI MEDIDA WIDTH PANTALLA+ "+this.widthPantalla)
+        this.hudBotonMochila.setPosition(this.widthPantalla-this.hudBotonMochila.width,10);
+
+        
+         this.hudBotonMochila.on('pointerdown', () => {this.hudContainerMochila.visible=true; });
+         this.hudBotonMochila.on('pointerup',   () => {this.hudContainerMochila.visible=false; } );
+
+
+      this.input.on('pointerup', () => {
+  this.hudContainerMochila.visible=false; 
+      });
+
+
+
+
+
 }
 //donde muestra los puntos acumulados
     hudPuntos(textoPuntos){
