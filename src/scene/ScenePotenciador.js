@@ -157,8 +157,12 @@ let btnActivar=this.add.text(0,0,"  Comprar  ",{
       let body= this.add.rectangle(positionX, positionY, medidaItems, medidaItems,colorFondo , 1) // rojo sólido
   .setOrigin(0)
   .setStrokeStyle(2, 0xffffff)
-  .setInteractive();
+  .setInteractive({ useHandCursor: true })
   ; 
+
+      body.input.alwaysEnabled=true;
+
+
 
       let image=this.add.image(positionX,positionY,this.armas[i].diseno).setDisplaySize(medidaItems,medidaItems)
         .setOrigin(0);
@@ -240,8 +244,7 @@ if(this.widthPantalla<this.heightPantalla) {
   this.puntos-=(this.seleccionItem.atributos.puntos)*(this.seleccionItem.atributos.nivel);
   this.puntaje.setText((this.puntos));
 
-  console.log("AQUI3->"+this.puntos);
-  console.log("AQUI4->"+this.puntaje);
+  
   this.scene.resume('StartGame');
 
   this.armas[Number(this.seleccionItem.atributos.id)-1].nivel++;
@@ -265,6 +268,8 @@ if(this.widthPantalla<this.heightPantalla) {
   let mask = maskShape.createGeometryMask();
   scrollContainer.add(seleccionador);
   scrollContainer.setMask(mask);
+  
+  
  // seleccionador.setMask(mask);
 
 
@@ -295,7 +300,7 @@ if(this.widthPantalla<this.heightPantalla) {
 
 }*/
   // scrollContainer.setMask(maskShape.createGeometryMask());
-if((medidaItems*l)>maskHeight)
+if((medidaItems*l)>maskHeight){
   this.input.on('wheel', (pointer, gameObjects, deltaX, deltaY) => {
   // desplazamiento proporcional (ajusta el 0.5 si va muy rápido/lento)
   scrollContainer.y -= deltaY * 0.5;
@@ -324,6 +329,61 @@ if((medidaItems*l)>maskHeight)
   //seleccionador.y=scrollContainer.y;
   //this.sumaScroll=scrollContainer.y;
 });
+/*
+scrollContainer.setInteractive(
+  new Phaser.Geom.Rectangle(0, 0, hudBackgroundPotenciador.width, maskHeight,0xffffff,0.5),
+  Phaser.Geom.Rectangle.Contains
+);
+
+this.input.setDraggable(scrollContainer);*/
+/*
+let dragCapturador=this.add.rectangle(
+  hudBackgroundPotenciador.x,
+  hudBackgroundPotenciador.y+medidaItems+(textoSeleccionPotenciador.height),
+  hudBackgroundPotenciador.width,
+  maskHeight,
+  0x27F542, 0.5 // transparente
+).setOrigin(0);
+
+dragCapturador.setInteractive();
+this.input.setDraggable(dragCapturador);
+
+let startY = 0;
+let containerStartY = 0;*/
+
+let startY = 0;
+let containerStartY = 0;
+let isDragging = false;
+
+this.input.on('pointerdown', (pointer) => {
+  startY = pointer.y;
+  containerStartY = scrollContainer.y;
+  isDragging = true;
+});
+
+this.input.on('pointermove', (pointer) => {
+  if (isDragging && pointer.isDown) {
+    let deltaY = pointer.y - startY;
+    scrollContainer.y = containerStartY + deltaY;
+
+    // límites
+    const totalAlturaContenido = Math.ceil(cantidadArmas / cantidadItemsWidth) * medidaItems;
+    const alturaVisible = maskHeight;
+    const maxScroll = 0;
+    const minScroll = alturaVisible - totalAlturaContenido;
+
+    if (scrollContainer.y > maxScroll) scrollContainer.y = maxScroll;
+    if (scrollContainer.y < minScroll) scrollContainer.y = minScroll;
+  }
+});
+
+this.input.on('pointerup', () => {
+  isDragging = false;
+});
+
+
+
+}
 
 
 
