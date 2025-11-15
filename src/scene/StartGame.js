@@ -868,12 +868,13 @@ crearHUD(){
         this.hudBotonMochila.setPosition(this.widthPantalla-this.hudBotonMochila.width,10);
 
         
-         this.hudBotonMochila.on('pointerdown', () => {this.hudContainerMochila.visible=true; });
-         this.hudBotonMochila.on('pointerup',   () => {this.hudContainerMochila.visible=false; } );
+         this.hudBotonMochila.on('pointerdown', () => {this.hudContainerMochila.visible=true; this.hudBotonMochila.setAlpha(0)});
+         this.hudBotonMochila.on('pointerup',   () => {this.hudContainerMochila.visible=false; this.hudBotonMochila.setAlpha(0.5)} );
 
 
       this.input.on('pointerup', () => {
-  this.hudContainerMochila.visible=false; 
+  this.hudContainerMochila.visible=false;
+  this.hudBotonMochila.setAlpha(0.5) 
       });
 
 
