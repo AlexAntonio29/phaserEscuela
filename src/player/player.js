@@ -72,7 +72,7 @@ export class player {
 
   setMovimientoPlayer(contacto){
 
-      this.keys = this.input.keyboard.addKeys({
+      this.keys = this.scene.input.keyboard.addKeys({
     W: Phaser.Input.Keyboard.KeyCodes.W,
     A: Phaser.Input.Keyboard.KeyCodes.A,
     S: Phaser.Input.Keyboard.KeyCodes.S,
@@ -108,7 +108,7 @@ export class player {
 
    
 
-  if((this.scene.cursor.up.isDown && this.scene.cursor.right.isDown)||(this.joystick.up.isDown&&this.joystick.right.isDown)){
+  if((this.scene.cursor.up.isDown && this.scene.cursor.right.isDown)||(this.keys.W.isDown&&this.keys.D.isDown)||(this.joystick.up.isDown&&this.joystick.right.isDown)){
     // console.log("UP + RIGHT");
 
       
@@ -119,18 +119,18 @@ export class player {
      this.sprite.setVelocityX(velocidadDiagonal);
   }
 
-  else if((this.scene.cursor.up.isDown && this.scene.cursor.left.isDown)||(this.joystick.up.isDown&&this.joystick.left.isDown)){
+  else if((this.scene.cursor.up.isDown && this.scene.cursor.left.isDown)||(this.keys.W.isDown&&this.keys.A.isDown)||(this.joystick.up.isDown&&this.joystick.left.isDown)){
    // console.log("UP + LEFT");
      this.sprite.setVelocityY(-velocidadDiagonal);
      this.sprite.setVelocityX(-velocidadDiagonal);
   }
-  else if((this.scene.cursor.down.isDown && this.scene.cursor.left.isDown)||(this.joystick.down.isDown&&this.joystick.left.isDown)){
+  else if((this.scene.cursor.down.isDown && this.scene.cursor.left.isDown)||(this.keys.S.isDown&&this.keys.A.isDown)||(this.joystick.down.isDown&&this.joystick.left.isDown)){
    // console.log("DOWN + LEFT");
      this.sprite.setVelocityY(velocidadDiagonal);
      this.sprite.setVelocityX(-velocidadDiagonal);
   }
 
-  else if((this.scene.cursor.down.isDown && this.scene.cursor.right.isDown)||(this.joystick.down.isDown&&this.joystick.right.isDown)){
+  else if((this.scene.cursor.down.isDown && this.scene.cursor.right.isDown)||(this.keys.S.isDown&&this.keys.D.isDown)||(this.joystick.down.isDown&&this.joystick.right.isDown)){
      //console.log("DOWN + RIGHT");
      
      this.sprite.setVelocityY(velocidadDiagonal);
@@ -138,7 +138,7 @@ export class player {
   }
   else
 //movimientos normales
- if(this.scene.cursor.up.isDown||this.joystick.up.isDown){
+ if(this.scene.cursor.up.isDown||this.keys.W.isDown||this.joystick.up.isDown){
 //.setOrigin(0.5,1)//arriba
   this.componentesAtaque.x=0.5;
   this.componentesAtaque.y=1;
@@ -155,7 +155,7 @@ export class player {
 
     //console.log("UP");
     this.sprite.setVelocityY(-velocidad);
- }else if(this.scene.cursor.down.isDown||this.joystick.down.isDown){
+ }else if(this.keys.S.isDown||this.scene.cursor.down.isDown||this.joystick.down.isDown){
 // .setOrigin(0.5,0)//abajo
    this.componentesAtaque.x=0.5;
   this.componentesAtaque.y=0;
@@ -170,7 +170,7 @@ export class player {
   
      //console.log("DOWN");
     this.sprite.setVelocityY(velocidad);
- }else if(this.scene.cursor.left.isDown||this.joystick.left.isDown){
+ }else if(this.scene.cursor.left.isDown||this.keys.A.isDown||this.joystick.left.isDown){
   
   //.setOrigin(1,0.5)//izquierda
   this.componentesAtaque.x=1;
@@ -185,7 +185,7 @@ export class player {
    
    //  console.log("LEFT");
     this.sprite.setVelocityX(-velocidad);
- }else if(this.scene.cursor.right.isDown||this.joystick.right.isDown){
+ }else if(this.scene.cursor.right.isDown||this.keys.D.isDown||this.joystick.right.isDown){
 
   //.setOrigin(0,0.5)//derecha
   this.componentesAtaque.x=0;
