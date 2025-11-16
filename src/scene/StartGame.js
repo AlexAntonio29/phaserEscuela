@@ -864,7 +864,7 @@ crearHUD(){
         .setInteractive()
         .setScrollFactor(0);
 
-        console.log("AQUI MEDIDA WIDTH PANTALLA+ "+this.widthPantalla)
+      
         this.hudBotonMochila.setPosition(this.widthPantalla-this.hudBotonMochila.width,10);
 
         
@@ -876,6 +876,16 @@ crearHUD(){
   this.hudContainerMochila.visible=false;
   this.hudBotonMochila.setAlpha(0.5) 
       });
+
+      this.input.keyboard.on('keydown-M', () => {
+    this.hudContainerMochila.visible = true;
+    this.hudBotonMochila.setAlpha(0);
+});
+
+this.input.keyboard.on('keyup-M', () => {
+    this.hudContainerMochila.visible = false;
+    this.hudBotonMochila.setAlpha(0.5);
+});
 
 
 

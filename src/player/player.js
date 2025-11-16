@@ -71,6 +71,16 @@ export class player {
 
 
   setMovimientoPlayer(contacto){
+
+      this.keys = this.input.keyboard.addKeys({
+    W: Phaser.Input.Keyboard.KeyCodes.W,
+    A: Phaser.Input.Keyboard.KeyCodes.A,
+    S: Phaser.Input.Keyboard.KeyCodes.S,
+    D: Phaser.Input.Keyboard.KeyCodes.D
+    
+});
+
+
     let velocidad=350;
 
    // console.log("MM_X: "+this.componentesAtaque.x);
