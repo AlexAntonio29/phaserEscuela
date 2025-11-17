@@ -79,7 +79,7 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
     
 
     //imagen mochila
-    this.load.image('mochila','./assets/mochila.png');
+    this.load.image('mochila','./assets/mochila.PNG');
    // this.load.image("croquis","./assets/croquis_escuela.png");
 
 
