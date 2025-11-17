@@ -70,14 +70,33 @@ export class Items{
                     .setPosition(this.x,this.y)
                     ;
 
+                     this.scene.anims.create({
+        key: "item_mov"+this.id,
+        frames: this.scene.anims.generateFrameNumbers("item_basura"+this.id, { start: 0, end: 4 }),
+        frameRate: 6,
+        repeat: -1
+          });
+    this.graphics.play("item_mov"+this.id);
+
+
+
                   }
             else if(this.categoria==="inorganico") {
 
-                 this.graphics=this.scene.physics.add.sprite(0,0,"item_basura"+(parseInt(this.id)+6))
+
+                    this.graphics=this.scene.physics.add.sprite(0,0,"item_basura"+(parseInt(this.id)+6))
                     .setOrigin(0)
                     .setDisplaySize(this.width,this.height)
                     .setPosition(this.x,this.y)
                     ;
+
+                     this.scene.anims.create({
+        key: "item_mov"+(parseInt(this.id)+6),
+        frames: this.scene.anims.generateFrameNumbers("item_basura"+(parseInt(this.id)+6), { start: 0, end: 4 }),
+        frameRate: 6,
+        repeat: -1
+          });
+    this.graphics.play("item_mov"+(parseInt(this.id)+6));
                  
 }
 else {this.graphics=this.scene.physics.add.sprite(0,0,n)
@@ -88,6 +107,8 @@ else {this.graphics=this.scene.physics.add.sprite(0,0,n)
                   console.log("Creando item reloj");
 
                   }
+
+                 
                     
 //this.graphics.body.setCollideWorldBounds(true);
           //this.graphics.setTexture('item');

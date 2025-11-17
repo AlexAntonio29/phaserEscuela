@@ -93,6 +93,7 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
    this.load.image('tiles', './assets/[Base]BaseChip_pipo.png');
    this.load.tilemapTiledJSON('mapa', './assets/mapa_scene.json');
    //item basura
+/*
    this.load.image("item_basura1","./assets/items/Cascara_platano.png"); 
    this.load.image("item_basura2","./assets/items/Manzana_mordida.png"); 
    this.load.image("item_basura3","./assets/items/Hueso_pescado.png"); 
@@ -101,10 +102,22 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
    this.load.image("item_basura6","./assets/items/Hueso.png"); 
    this.load.image("item_basura7","./assets/items/Botella_agua.png"); 
    this.load.image("item_basura8","./assets/items/Bolsa_plastico.png"); 
-   this.load.image("item_basura9","./assets/items/Vaso_plastico.png"); 
+   this.load.image("item_basura9","./assets/items/Vaso_plastico.png");
    this.load.image("item_basura10","./assets/items/Lata.png"); 
    this.load.image("item_basura11","./assets/items/Tapa.png"); 
-   this.load.image("item_basura12","./assets/items/Vidrio.png"); 
+   this.load.image("item_basura12","./assets/items/Vidrio.png"); */
+
+   let cantidadItems=itemsInorganicos.length+itemsOrganicos.length;
+   
+    for(let i=0;i<cantidadItems;i++){
+
+      this.load.spritesheet("item_basura"+(i+1), "./assets/items/item_basura"+(i+1)+".png", {
+  frameWidth: 128,
+  frameHeight: 128
+});
+
+    }
+
 
    //Textura de tiempo
    this.load.image("reloj","./assets/items/otrosItems/reloj.png");

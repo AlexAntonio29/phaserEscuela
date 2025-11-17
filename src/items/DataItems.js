@@ -4,7 +4,8 @@ export const itemsOrganicos=[
     'item':'Cascara de platano',
     'categoria':'organico',
     'puntos':'5',
-    'cantidad':'0'
+    'cantidad':'0',
+    'diseno':'item0'
 
 },
 {
@@ -12,35 +13,40 @@ export const itemsOrganicos=[
     'item':'Manzana mordida',
     'categoria':'organico',
     'puntos':'8',
-    'cantidad':'0'
+    'cantidad':'0',
+    'diseno':'item1'
 },
 {
     'id':"3",
     'item':'Hueso de pescado',
     'categoria':'organico',
     'puntos':'10',
-    'cantidad':'0'
+    'cantidad':'0',
+    'diseno':'item2'
 },
 {
     'id':"4",
     'item':'Pizza mordida',
     'categoria':'organico',
     'puntos':'15',
-    'cantidad':'0'
+    'cantidad':'0',
+    'diseno':'item3'
 },
 {
     'id':"5",
     'item':'Hojas secas',
     'categoria':'organico',
     'puntos':'2',
-    'cantidad':'0'
+    'cantidad':'0',
+    'diseno':'item4'
 },
 {
     'id':"6",
     'item':'Hueso',
     'categoria':'organico',
     'puntos':'12',
-    'cantidad':'0'
+    'cantidad':'0',
+    'diseno':'item5'
 }
 
 ]
@@ -52,21 +58,24 @@ export const itemsInorganicos=[
     'item':'Bote de agua',
     'categoria':'inorganico',
     'puntos':'5',
-    'cantidad':'0'
+    'cantidad':'0',
+    'diseno':'item6'
 },
 {
     'id':"2",
     'item':'Bolsa de plastico',
     'categoria':'inorganico',
     'puntos':'10',
-    'cantidad':'0'
+    'cantidad':'0',
+    'diseno':'item7'
 },
 {
     'id':"3",
     'item':'Vaso de plástico',
     'categoria':'inorganico',
     'puntos':'12',
-    'cantidad':'0'
+    'cantidad':'0',
+    'diseno':'item8'
 }
 ,
 {
@@ -74,7 +83,8 @@ export const itemsInorganicos=[
     'item':'Lata',
     'categoria':'inorganico',
     'puntos':'15',
-    'cantidad':'0'
+    'cantidad':'0',
+    'diseno':'item9'
 }
 ,
 {
@@ -82,14 +92,16 @@ export const itemsInorganicos=[
     'item':'Tapa de botella',
     'categoria':'inorganico',
     'puntos':'18',
-    'cantidad':'0'
+    'cantidad':'0',
+    'diseno':'item10'
 },
 {
     'id':"6",
     'item':'Vidrio',
     'categoria':'inorganico',
     'puntos':'25',
-    'cantidad':'0'
+    'cantidad':'0',
+    'diseno':'item11'
 }
 
 
