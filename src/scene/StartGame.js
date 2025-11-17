@@ -898,12 +898,13 @@ crearHUD(){
         this.hudBotonMochila=this.add.image(0,0,'mochila')
         .setOrigin(0)
         .setAlpha(0.5)
-        .setScale(0.5)
+        //.setScale(0.5)
+        .setDisplaySize(50,50)
         .setInteractive()
         .setScrollFactor(0);
 
       
-        this.hudBotonMochila.setPosition(this.widthPantalla-this.hudBotonMochila.width,10);
+        this.hudBotonMochila.setPosition(this.widthPantalla-60,10);
 
         
          this.hudBotonMochila.on('pointerdown', () => {this.hudContainerMochila.visible=true; this.hudBotonMochila.setAlpha(0)});
