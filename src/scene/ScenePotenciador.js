@@ -49,7 +49,7 @@ crearPotenciador(){
     
   let division=2;
   let hudContainerPotenciador=this.add.container(0,0);
-  let cantidadItemsWidth=5;
+  let cantidadItemsWidth=8;
   let complementoAlturaMask=0;
   let j=0,k=0,l=0;//para crear divisiones
   let cantidadArmas=this.armas.length;

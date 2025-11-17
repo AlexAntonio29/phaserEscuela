@@ -83,7 +83,13 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
    // this.load.image("croquis","./assets/croquis_escuela.png");
 
 
-   this.load.image("player","./assets/player/Player.png"); 
+   //this.load.image("player","./assets/player/Player.png");
+   this.load.spritesheet("player", "./assets/player/Player.png", {
+  frameWidth: 80,
+  frameHeight: 128
+});
+   
+
    this.load.image('tiles', './assets/[Base]BaseChip_pipo.png');
    this.load.tilemapTiledJSON('mapa', './assets/mapa_scene.json');
    //item basura
@@ -124,7 +130,7 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
   frameHeight: 128
 });
 
-console.log("Creado "+dataEnemigos[i].diseno+" de directorio: ./assets/enemies/"+dataEnemigos[i].diseno+".png");
+//console.log("Creado "+dataEnemigos[i].diseno+" de directorio: ./assets/enemies/"+dataEnemigos[i].diseno+".png");
 
 }
 
@@ -144,6 +150,16 @@ console.log("En Joystick");
 
     }
 
+    cargarTeclar(){
+       this.keys = this.input.keyboard.addKeys({
+    W: Phaser.Input.Keyboard.KeyCodes.W,
+    A: Phaser.Input.Keyboard.KeyCodes.A,
+    S: Phaser.Input.Keyboard.KeyCodes.S,
+    D: Phaser.Input.Keyboard.KeyCodes.D
+    
+});
+    }
+
 //aqui cargo todos los archivos y objetos necesarios antes de que inicie el escenario
     preload(){
 
@@ -157,6 +173,7 @@ console.log("En Joystick");
       this.cargarAnimaciones();
 
       this.crearJoystick();
+      this.cargarTeclar();
 
       this.cargarBotonesTeclas();
    
@@ -176,7 +193,7 @@ crearEscenario(){
     //this.escenario.setOrigin(0);
     //this.scene.setDisplaySize(this.scale.width,this.scale.height);
 
-    console.log(this.escenario);
+    //console.log(this.escenario);
 
    //Dimensiones del mapa
     this.map= this.make.tilemap({ key: "mapa" });
@@ -393,12 +410,33 @@ movimientosEnemigo(){
 getPlayer(){
 
   
-    this.player=new player(this, 'player',20,25,this.joystickCursors, this.controles);
+    this.player=new player(this, 'player',40,60,this.joystickCursors, this.controles, this.keys);
+
+
   
 
    
    
     this.player.setPositionInitial(800,1000);
+    //this.player.getChangeSprite();
+
+/*
+    this.keys.W.on('down', () => {this.player.getCaminar()});
+    this.keys.W.on('up',   () => {this.player.getNoCaminar()});
+
+    this.keys.S.on('down', () => {this.player.getCaminar()});
+    this.keys.S.on('up',   () => {this.player.getNoCaminar()});
+
+    this.keys.A.on('down', () => {this.player.getCaminar()});
+    this.keys.A.on('up',   () => {this.player.getNoCaminar()});
+
+    this.keys.D.on('down', () => {this.player.getCaminar()});
+    this.keys.D.on('up',   () => {this.player.getNoCaminar()});*/
+
+
+
+   
+    //this.input.keyboard.on('keyup-W', () => {console.log("Suelto ") });
 
      //movimientos de jugador
 
@@ -534,7 +572,7 @@ this.listaEnemigos.map(enemigo=>{
     this.player.getContainer(),
     enemigo.getContainer(),
     ()=>{
-        console.log("Contacto enemigo con player");
+        //console.log("Contacto enemigo con player");
           empujar(enemigo.getContainer(),this.player.getContainer(),0,this.contactoSprites,this);//
           this.player.setVida(1);
           if(this.player.getVida()<=0)this.finalizarPartida("Has muerto") ;
@@ -559,7 +597,7 @@ this.listaEnemigos.map(enemigo=>{
     this.physics.add.collider(a.getContainer(), b.getContainer(),()=>{
      empujar(a.getContainer(),b.getContainer(),2,this.contactoSprites,this,400,false);
     });
-    console.log("Creacion de colision de enemigos");
+    //console.log("Creacion de colision de enemigos");
   }
 });
 
@@ -586,7 +624,7 @@ this.physics.add.collider(this.player.getContainer(),this.arboles);
 
           this.puntos=Number(this.puntaje.text);
 
-          console.log("AQUI2->"+this.puntos);
+          
 
           
           //organizar puntos en items
@@ -624,7 +662,7 @@ this.physics.add.collider(this.player.getContainer(),this.arboles);
             itemsInorganicos.map(item=>{
                  puntosTemporales=puntosTemporales+(parseInt(item.cantidad)*parseInt(item.puntos));
             });
-            console.log("AQUI->"+this.puntos)
+            
             this.puntos+=Number(item.puntos);//puntosTemporales;
 
             //this.puntos=parseInt(this.puntos)+parseInt(item.puntos);
@@ -878,6 +916,7 @@ crearHUD(){
       });
 
       this.input.keyboard.on('keydown-M', () => {
+       // console.log("Presionado M")
     this.hudContainerMochila.visible = true;
     this.hudBotonMochila.setAlpha(0);
 });
@@ -1038,6 +1077,9 @@ create(){
      this.cargarBotones();
     this.cargarJoystick();
     this.getPlayer();
+    
+  
+
     this.crearEnemigo();
 
     //colisiones en entre items
