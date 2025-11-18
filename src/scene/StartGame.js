@@ -7,6 +7,7 @@ import { Enemies } from "../enemies/Enemies.js";
 import { empujar } from "../funciones/empujar.js";
 import { itemTiempo } from "../items/ItemTiempo.js";
 import { armas } from "../items/DataItemsPotenciadores.js";
+import { crearItemsBasura } from "../funciones/crearItemsBasura.js";
 
 export class StartGame extends Phaser.Scene{//cuando inicia la partida
 
@@ -21,6 +22,9 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
       this.tiempo=100;
       this.tiempoProgresivo=0;//el tiempo progresivo sirve para llevar el tiempo siempre adelante
       this.tiempoParaCrearEnemigos=10;
+
+      //Crear variable para habilitar colission player Item nuevo
+      this.habilitarCollisionItem=false;
       //agregar arma
       this.armas=armas;
 
@@ -53,10 +57,12 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
    this.listaEnemigos=[];
     
     this.puntosCreacionEnemigo=10;
-    this.topeCreacionEnemigos=10;
+    this.topeCreacionEnemigos=5;
 
     this.getPotenciadorPuntos=200;
     this.puntosPotenciadorAcumulador=1;
+
+    this.items_basura=[];
     }
 
     cargarBotonesTeclas(){  
@@ -277,7 +283,7 @@ crearArboles(){
 }
 
 
-
+/*
 crearItemsBasura(n=1){
 
     //Math.floor(Math.random() * (max - min + 1)) + min;
@@ -324,7 +330,7 @@ crearItemsBasura(n=1){
     }
 
 
-}
+}*/
 
 crearItemReloj(){
 
@@ -335,7 +341,7 @@ crearItemReloj(){
      let x=Math.floor(Math.random() * ((this.widthEscenario-30) - 0 + 1)) + 0;
      let y=Math.floor(Math.random() * ((this.heightEscenario-30) - 0 + 1)) + 0;
 
-    this.listaRelojes.push(new itemTiempo(this,null,null,30,30,x,y,"reloj"));
+    this.listaRelojes.push(new itemTiempo(this,null,null,40,40,x,y,"reloj"));
    // this.listaRelojes[i].setItemPosition(x,y);
 
   }
@@ -346,7 +352,8 @@ crearItemReloj(){
 crearItems(n){
     
 
-   this.crearItemsBasura(n); 
+   //this.crearItemsBasura(n); 
+   crearItemsBasura(this,n,this.items_basura,this.widthEscenario,this.heightEscenario,true);
 
    this.crearItemReloj();
 }
@@ -378,6 +385,7 @@ crearEnemigo(n=1){
     let y=Math.floor(Math.random() * ((this.heightEscenario-30) - 0 + 1)) + 0;
    
     this.listaEnemigos.push(new Enemies(this,JSON.parse(JSON.stringify(dataEnemigos[valor])),x,y));
+    console.log(`posicion CREACION: X:${x}   Y:${y}`);
     
     /*
     this.listaEnemigos.map(enemigo=>{
@@ -465,9 +473,14 @@ getPlayer(){
 movimientosPlayer(){
      this.player.setMovimientoPlayer(this.contactoSprites[0]);
     
-     this.player.getAtaque(this.listaEnemigos,this.contactoSprites,1);
+     this.player.getAtaque(this.listaEnemigos,this.contactoSprites,1,this.items_basura);
 
-
+     console.log(this.habilitarCollisionItem);
+    if(this.player.getHabilitarCollision()){
+        console.log("Habilitando Collsion ITEM NUEVO");
+         this.collisionRecogerItemBasura(); 
+         this.player.setHabilitarCollision(false);
+        }
     // console.log("ESTA ATACANDO: "+this.estaAtacando);
 
    
@@ -687,7 +700,7 @@ this.physics.add.collider(this.player.getContainer(),this.arboles);
                
               this.puntosCreacionEnemigo=this.puntosCreacionEnemigo+200;
               
-             this.topeCreacionEnemigos+=15;
+             this.topeCreacionEnemigos+=10;
             }
 
             if(this.puntos>=this.getPotenciadorPuntos)  this.getPotenciador();

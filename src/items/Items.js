@@ -99,12 +99,16 @@ export class Items{
     this.graphics.play("item_mov"+(parseInt(this.id)+6));
                  
 }
-else {this.graphics=this.scene.physics.add.sprite(0,0,n)
+else {
+  
+  this.graphics=this.scene.physics.add.sprite(0,0,n)
                     .setOrigin(0)
                     .setDisplaySize(this.width,this.height)
                     .setPosition(this.x,this.y)
                     ;
+                    
                   console.log("Creando item reloj");
+                  console.log(`Width:${this.width} Height:${this.height}`)
 
                   }
 

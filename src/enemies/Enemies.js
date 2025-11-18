@@ -84,6 +84,14 @@ export class Enemies{
         this.enemigo.setPosition(x,y);
     }
 
+    getPositionX(){
+      return this.enemigo.x;
+    }
+
+    getpositionY(){
+      return this.enemigo.y;
+    }
+
     setEnemiesVelocity(n=0){
         this.enemigo.setVelocity(n);
     }   
@@ -193,6 +201,8 @@ export class Enemies{
   }
  
     }
+
+    //console.log(`movimiento tiempo Real ENEMIGO X:${this.enemigo.x} Y:${this.enemigo.y}`);
 
 
     }

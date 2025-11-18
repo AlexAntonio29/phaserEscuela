@@ -1,4 +1,5 @@
 import  {empujar}  from "../funciones/empujar.js";
+import { crearItemsBasura } from "../funciones/crearItemsBasura.js";
 export class player {
 
   constructor(scene, texture, x = 20, y = 25, joystick,controles, keys) {
@@ -14,6 +15,8 @@ export class player {
     this.caminar=false;
     this.caminarInversoEstatico=false;
     this.keys=keys;
+
+    this.habilitarCollision=false;
 
    
 
@@ -84,6 +87,16 @@ export class player {
 
     console.log("CREACION del player");
   }
+
+  getHabilitarCollision(){
+    return this.habilitarCollision;
+  }
+
+  setHabilitarCollision(n){
+      this.habilitarCollision=n;
+  }
+
+
 
   getCaminar(){
 
@@ -357,7 +370,7 @@ if (caminar) {
   setAtaque(){
   }
 
-  getAtaque(listaEnemigos,contacto,n){
+  getAtaque(listaEnemigos,contacto,n,listaItems){
 
 
    
@@ -454,10 +467,15 @@ this.scene.physics.add.overlap(spriteAtaque, this.grupoEnemigos, (ataque, enemig
   enemigo.setVida(parseInt(this.arma.ataque * this.arma.nivel));
 
   if (enemigo.getVida() <= 0) {
+
+    crearItemsBasura(this.scene,enemigo.dataEnemie.items,listaItems,enemigo.getPositionX(),enemigo.getpositionY(),false);
     enemigo.getContainer().destroy();
     const index = listaEnemigos.indexOf(enemigo);
               if (index !== -1) listaEnemigos.splice(index, 1);
     console.log("Enemigo Eliminado - Cantidad: " + listaEnemigos.length);
+
+    this.habilitarCollision=true;
+
   } else {
     empujar(spriteAtaque, enemigo.getContainer(), n, contacto, this.scene);
     enemigo.setGolpeado();
