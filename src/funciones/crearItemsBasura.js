@@ -1,7 +1,8 @@
 import { Items } from "../items/Items.js";
 import {itemsOrganicos, itemsInorganicos} from "../items/DataItems.js";
+import { player } from "../player/player.js";
 
-export function crearItemsBasura(scene,n=1,items_basura,widthEscenario,heightEscenario,posicionAleatoria){
+export function crearItemsBasura(scene,n=1,items_basura,widthEscenario,heightEscenario,posicionAleatoria,player=null){
 
 
 
@@ -35,10 +36,20 @@ export function crearItemsBasura(scene,n=1,items_basura,widthEscenario,heightEsc
             x=widthEscenario;
             y=heightEscenario;
              console.log(`posicion APARICION EN CREATE ITEMS: X:${x}   Y:${y}`);
+
+
         }
 
 
    let cuerpo=new Items(scene,tipo.id, tipo.categoria,40,40,x,y);
+
+   if(!posicionAleatoria){
+    let velocidad=Math.floor(Math.random() * (2000 - 1000 + 1)) + 1000;
+   // scene.time.delayedCall(1000, () => {
+    scene.physics.moveToObject(cuerpo.getContainer(), player, velocidad);
+    //});
+     
+   }
     
 
     //this.cuerpo.setColor(tipo.id, tipo.categoria);

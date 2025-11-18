@@ -467,8 +467,9 @@ this.scene.physics.add.overlap(spriteAtaque, this.grupoEnemigos, (ataque, enemig
   enemigo.setVida(parseInt(this.arma.ataque * this.arma.nivel));
 
   if (enemigo.getVida() <= 0) {
+    
 
-    crearItemsBasura(this.scene,enemigo.dataEnemie.items,listaItems,enemigo.getPositionX(),enemigo.getpositionY(),false);
+    crearItemsBasura(this.scene,enemigo.dataEnemie.items,listaItems,enemigo.getPositionX(),enemigo.getpositionY(),false,this.sprite);
     enemigo.getContainer().destroy();
     const index = listaEnemigos.indexOf(enemigo);
               if (index !== -1) listaEnemigos.splice(index, 1);

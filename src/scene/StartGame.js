@@ -23,8 +23,7 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
       this.tiempoProgresivo=0;//el tiempo progresivo sirve para llevar el tiempo siempre adelante
       this.tiempoParaCrearEnemigos=10;
 
-      //Crear variable para habilitar colission player Item nuevo
-      this.habilitarCollisionItem=false;
+     
       //agregar arma
       this.armas=armas;
 
@@ -475,7 +474,7 @@ movimientosPlayer(){
     
      this.player.getAtaque(this.listaEnemigos,this.contactoSprites,1,this.items_basura);
 
-     console.log(this.habilitarCollisionItem);
+     
     if(this.player.getHabilitarCollision()){
         console.log("Habilitando Collsion ITEM NUEVO");
          this.collisionRecogerItemBasura(); 
