@@ -158,6 +158,13 @@ export class player {
     
   }
 
+  getPositionX(){
+    return this.sprite.x;
+  }
+  getPositionY(){
+    return this.sprite.y;
+  }
+
   setMovementX(n = 1) {
     this.sprite.setVelocityX(n);
   }
