@@ -236,9 +236,7 @@ if(this.widthPantalla<this.heightPantalla) {
 
       if(!btnActivar.active) return;
   
-  console.log('Boton Presionado en item '+this.seleccionItem);
-  console.log(this.seleccionItem);
-  console.log( this.armas[Number(this.seleccionItem.atributos.id)-1].nivel);
+
   this.player.setArma({...this.seleccionItem.atributos});
   this.scene.stop();
   this.puntos-=(this.seleccionItem.atributos.puntos)*(this.seleccionItem.atributos.nivel);

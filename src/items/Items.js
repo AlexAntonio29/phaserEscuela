@@ -69,13 +69,15 @@ export class Items{
                     .setDisplaySize(this.width,this.height)
                     .setPosition(this.x,this.y)
                     ;
-
+                if (!this.scene.anims.exists("item_mov"+this.id)) {
                      this.scene.anims.create({
         key: "item_mov"+this.id,
         frames: this.scene.anims.generateFrameNumbers("item_basura"+this.id, { start: 0, end: 4 }),
         frameRate: 6,
         repeat: -1
           });
+        }
+
     this.graphics.play("item_mov"+this.id);
 
 
@@ -90,12 +92,13 @@ export class Items{
                     .setPosition(this.x,this.y)
                     ;
 
+                      if (!this.scene.anims.exists("item_mov"+(parseInt(this.id)+6))) {
                      this.scene.anims.create({
         key: "item_mov"+(parseInt(this.id)+6),
         frames: this.scene.anims.generateFrameNumbers("item_basura"+(parseInt(this.id)+6), { start: 0, end: 4 }),
         frameRate: 6,
         repeat: -1
-          });
+          });}
     this.graphics.play("item_mov"+(parseInt(this.id)+6));
                  
 }

@@ -36,13 +36,14 @@ export class Enemies{
 
     setBody(){
 
-      
+        if (!this.scene.anims.exists(this.dataEnemie.diseno+"_camina")) {
         this.scene.anims.create({
         key: this.dataEnemie.diseno+"_camina",
         frames: this.scene.anims.generateFrameNumbers(this.dataEnemie.diseno, { start: 0, end: 3 }),
         frameRate: 6,
         repeat: -1
           });
+        }
 
 
         this.enemigo=this.scene.physics.add.sprite(0,0,this.dataEnemie.diseno)
@@ -61,12 +62,13 @@ export class Enemies{
 
     setGolpeado(){
       if (!this.enemigo || !this.enemigo.scene) return;
+      if (!this.scene.anims.exists(this.dataEnemie.diseno+"_golpeado")) {
       this.scene.anims.create({
         key: this.dataEnemie.diseno+"_golpeado",
         frames: this.scene.anims.generateFrameNumbers(this.dataEnemie.diseno, { start: 4, end: 4 }),
         frameRate: 6,
         repeat: -1
-          });
+          });}
 
       
       this.enemigo.play(this.dataEnemie.diseno+"_golpeado");

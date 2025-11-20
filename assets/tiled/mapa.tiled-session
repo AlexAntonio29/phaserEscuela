@@ -3,12 +3,12 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "U:/Escritorio/mapita.tmx",
+    "activeFile": "U:/Escritorio/mapa_phaser/MAPA_FINAL/mapa_scene.json",
     "expandedProjectPaths": [
-        "32/Pipoya RPG Tileset 32x32",
-        "32",
         ".",
-        "32/Pipoya RPG Tileset 32x32/SampleMap"
+        "32/Pipoya RPG Tileset 32x32/SampleMap",
+        "32",
+        "32/Pipoya RPG Tileset 32x32"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -118,6 +118,24 @@
             "dynamicWrapping": false,
             "scaleInDock": 1
         },
+        "U:/Escritorio/mapa_phaser/MAPA_FINAL/mapa_scene.json": {
+            "expandedGroupLayers": [
+                39,
+                26
+            ],
+            "scale": 0.25,
+            "selectedLayer": 18,
+            "viewCenter": {
+                "x": 1608,
+                "y": 2022
+            }
+        },
+        "U:/Escritorio/mapa_phaser/MAPA_FINAL/mapa_scene.json#[A]Grass_pipo": {
+            "scaleInDock": 1
+        },
+        "U:/Escritorio/mapa_phaser/MAPA_FINAL/mapa_scene.json#map-tecmm": {
+            "scaleInDock": 1
+        },
         "U:/Escritorio/mapa_phaser/MAPITA.json": {
             "expandedGroupLayers": [
                 26
@@ -145,6 +163,10 @@
                 "x": 0,
                 "y": -4768
             }
+        },
+        "U:/Escritorio/mapa_phaser/[A]Grass_pipo.tsj": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "U:/Escritorio/mapa_phaser/[Base]BaseChip_pipo.tsx": {
             "scaleInDock": 1,
@@ -210,8 +232,8 @@
             "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 502.6666666666667,
-                "y": 777.9999999999999
+                "x": 1276,
+                "y": 1639.3333333333333
             }
         },
         "U:/Escritorio/mapa_phaser/samplemap.json#[A]Flower_pipo": {
@@ -298,14 +320,15 @@
     "map.tileHeight": 32,
     "map.tileWidth": 32,
     "openFiles": [
-        "U:/Escritorio/mapa_phaser/mapa_scene.json",
-        "U:/Escritorio/mapita.tmx"
+        "U:/Escritorio/mapa_phaser/MAPA_FINAL/mapa_scene.json"
     ],
     "project": "mapa.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "U:/Escritorio/mapita.tmx",
+        "U:/Escritorio/mapa_phaser/MAPA_FINAL/mapa_scene.json",
         "U:/Escritorio/mapa_phaser/samplemap.json",
+        "U:/Escritorio/mapa_phaser/[A]Grass_pipo.tsj",
+        "U:/Escritorio/mapita.tmx",
         "U:/Escritorio/mapa_phaser/mapa_scene.json",
         "32/Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx",
         "U:/Escritorio/mapa_phaser/nuevo/MAPITA.json",
@@ -313,9 +336,7 @@
         "U:/Escritorio/mapa_phaser/nuevo/map-tecmm.tsx",
         "U:/Escritorio/mapa_phaser/MAPITA.tmx",
         "U:/Escritorio/mapa_phaser/MAPITA.json",
-        "U:/Escritorio/mapa_phaser/mapa/texture.tsj",
-        "U:/Escritorio/mapa_phaser/texture.tsj",
-        "U:/Escritorio/mapa_phaser/map_prueba.tsj"
+        "U:/Escritorio/mapa_phaser/mapa/texture.tsj"
     ],
     "tileset.lastUsedFilter": "Archivos de conjuntos de patrones Tiled (*.tsx *.xml)",
     "tileset.lastUsedFormat": "json"

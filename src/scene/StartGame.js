@@ -56,7 +56,7 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
    this.listaEnemigos=[];
     
     this.puntosCreacionEnemigo=10;
-    this.topeCreacionEnemigos=5;
+    this.topeCreacionEnemigos=500;
 
     this.getPotenciadorPuntos=200;
     this.puntosPotenciadorAcumulador=1;
@@ -96,6 +96,7 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
    
 
    this.load.image('tiles', './assets/[Base]BaseChip_pipo.png');
+   this.load.image('tiles2', './assets/[A]Grass_pipo.png');
    this.load.tilemapTiledJSON('mapa', './assets/mapa_scene.json');
    //item basura
 
@@ -211,6 +212,7 @@ crearEscenario(){
 
     console.log(`width:${this.widthEscenario} height:${this.heightEscenario}`);
     this.tileset = this.map.addTilesetImage('map-tecmm', 'tiles');
+    //this.tileset2= this.map.addTilesetImage('map-tecmm2', 'tiles2');
   //  const tileset2 = map.addTilesetImage('[Base]BaseChip_pipo', 'tiles');
 
   // const fondo0 = map.createLayer('Capa de patrones 1', tileset, 0, 0);
@@ -218,6 +220,7 @@ crearEscenario(){
 
      const fondo14 = this.map.createLayer('BACKGRASS', this.tileset , 0, 0);
     const fondo2 = this.map.createLayer('GRASS', this.tileset , 0, 0);
+    //const grass2=this.map.createLayer('GRASS', this.tileset2 , 0, 0);
 
    const fondo4 = this.map.createLayer('BASE_ROADS_CAR', this.tileset , 0, 0);
    const fondo5 = this.map.createLayer('BASE_ROADS_WALK', this.tileset , 0, 0);
@@ -225,6 +228,7 @@ crearEscenario(){
     
     
     this.muros= this.map.createLayer('DOORS', this.tileset , 0, 0);
+    
     //const fondo7 = this.map.createLayer('arbol', tileset, 0, 0);
    
 
@@ -257,7 +261,7 @@ crearEdificios(){
 
     //this.diseno=this.map.createLayer('DISENO',this.tileset,0,0);
 
-    
+    this.complementosMuros=this.map.createLayer('DEPARTAMENTS/COMPLEMENTOS', this.tileset2 , 0, 0);
     this.edificios = this.map.createLayer('DEPARTAMENTS/INDUSTRIAL', this.tileset , 0, 0);
     this.windowsEdificio = this.map.createLayer('DEPARTAMENTS/WINDOWS', this.tileset , 0, 0);
     
@@ -325,7 +329,7 @@ crearEnemigo(n=1){
     let y=Math.floor(Math.random() * ((this.heightEscenario-30) - 0 + 1)) + 0;
    
     this.listaEnemigos.push(new Enemies(this,JSON.parse(JSON.stringify(dataEnemigos[valor])),x,y));
-    console.log(`posicion CREACION: X:${x}   Y:${y}`);
+    
     
     /*
     this.listaEnemigos.map(enemigo=>{
@@ -416,12 +420,13 @@ movimientosPlayer(){
     
      this.player.getAtaque(this.listaEnemigos,this.contactoSprites,1,this.items_basura);
 
-     
+
+     /*
     if(this.player.getHabilitarCollision()){
         console.log("Habilitando Collsion ITEM NUEVO");
          this.collisionRecogerItemBasura(); 
          this.player.setHabilitarCollision(false);
-        }
+        }*/
     // console.log("ESTA ATACANDO: "+this.estaAtacando);
 
    
@@ -548,7 +553,7 @@ this.listaEnemigos.map(enemigo=>{
     ()=>{
         //console.log("Contacto enemigo con player");
           empujar(enemigo.getContainer(),this.player.getContainer(),0,this.contactoSprites,this);//
-          this.player.setVida(1);
+          //this.player.setVida(1);
           if(this.player.getVida()<=0)this.finalizarPartida("Has muerto") ;
     }, null, this
 );
@@ -695,7 +700,8 @@ this.physics.add.collider(this.player.getContainer(),this.muros);
                
               this.puntosCreacionEnemigo=this.puntosCreacionEnemigo+200;
               
-             this.topeCreacionEnemigos+=10;
+              //if(this.topeCreacionEnemigos<20)
+                this.topeCreacionEnemigos+=1;
             }
 
             if(this.puntos>=this.getPotenciadorPuntos)  this.getPotenciador();

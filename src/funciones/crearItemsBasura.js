@@ -46,7 +46,7 @@ export function crearItemsBasura(scene,n=1,items_basura,widthEscenario,heightEsc
    if(!posicionAleatoria){
     let velocidad=Math.floor(Math.random() * (2000 - 1000 + 1)) + 1000;
    // scene.time.delayedCall(1000, () => {
-    scene.physics.moveToObject(cuerpo.getContainer(), player, velocidad);
+    //scene.physics.moveToObject(cuerpo.getContainer(), player, velocidad);
     //});
      
    }

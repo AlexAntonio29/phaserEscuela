@@ -1,5 +1,6 @@
 import  {empujar}  from "../funciones/empujar.js";
 import { crearItemsBasura } from "../funciones/crearItemsBasura.js";
+import { armas } from "../items/DataItemsPotenciadores.js";
 export class player {
 
   constructor(scene, texture, x = 20, y = 25, joystick,controles, keys) {
@@ -9,7 +10,7 @@ export class player {
     this.texture = texture;
     this.x=x;
     this.y=y;
-    this.arma;
+    this.arma=armas[0];
     this.joystick=joystick;
     this.controles=controles;
     this.caminar=false;
@@ -363,8 +364,7 @@ if (caminar) {
   setArma(arma){
 
     this.arma=arma;
-    console.log("SetArma: ");
-    console.log(arma);
+  
 
   }
 
@@ -432,31 +432,36 @@ if (caminar) {
             default:
               break;
         }
-/*
+
            listaEnemigos.map(enemigo=>{
           this.scene.physics.add.overlap(
           spriteAtaque,
           enemigo.getContainer(),
           ()=>{
-            console.log("vida enemigo: "+enemigo.getVida());
+        
             enemigo.setVida(parseInt((this.arma.ataque)*(this.arma.nivel)));
-            console.log("vida enemigo AQUI REVISA->: "+enemigo.getVida());
-             if(enemigo.getVida()<=0){enemigo.getContainer().destroy();
-              console.log("Enemigo Eliminado - Cantidad: "+ listaEnemigos.length);
+            
+             if(enemigo.getVida()<=0){
+              
+              
+              //crearItemsBasura(this.scene,enemigo.dataEnemie.items,listaItems,enemigo.getPositionX(),enemigo.getpositionY(),false,this.sprite);
+              enemigo.getContainer().destroy();
+             // console.log("Enemigo Eliminado - Cantidad: "+ listaEnemigos.length);
                const index = listaEnemigos.indexOf(enemigo);
               if (index !== -1) listaEnemigos.splice(index, 1);
-
-        console.log("Enemigo Eliminado - Cantidad: " + listaEnemigos.length);
+                this.habilitarCollision=true;
+        //console.log("Enemigo Eliminado - Cantidad: " + listaEnemigos.length);
              }
           else empujar(spriteAtaque,enemigo.getContainer(),n,contacto,this.scene);
+          enemigo.setGolpeado();
 
           // contacto[n]=false;
 
               }, null, this
               );
-                })*/
+                })
 
-                
+                /*
 this.grupoEnemigos = this.scene.physics.add.group();
 
 listaEnemigos.forEach(enemigo => {
@@ -470,17 +475,17 @@ this.scene.physics.add.overlap(spriteAtaque, this.grupoEnemigos, (ataque, enemig
   if(enemigo.golpeado) return;
   enemigo.golpeado=true;
 
-  console.log("vida enemigo: " + enemigo.getVida());
+  //console.log("vida enemigo: " + enemigo.getVida());
   enemigo.setVida(parseInt(this.arma.ataque * this.arma.nivel));
 
   if (enemigo.getVida() <= 0) {
     
 
-    crearItemsBasura(this.scene,enemigo.dataEnemie.items,listaItems,enemigo.getPositionX(),enemigo.getpositionY(),false,this.sprite);
+    //crearItemsBasura(this.scene,enemigo.dataEnemie.items,listaItems,enemigo.getPositionX(),enemigo.getpositionY(),false,this.sprite);
     enemigo.getContainer().destroy();
     const index = listaEnemigos.indexOf(enemigo);
               if (index !== -1) listaEnemigos.splice(index, 1);
-    console.log("Enemigo Eliminado - Cantidad: " + listaEnemigos.length);
+   // console.log("Enemigo Eliminado - Cantidad: " + listaEnemigos.length);
 
     this.habilitarCollision=true;
 
@@ -489,7 +494,7 @@ this.scene.physics.add.overlap(spriteAtaque, this.grupoEnemigos, (ataque, enemig
     enemigo.setGolpeado();
   }
 
-}, null, this);
+}, null, this);*/
                 
 
                  //contacto[n]=false;

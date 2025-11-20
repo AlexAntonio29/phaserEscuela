@@ -26,11 +26,11 @@ if(!listaContacto[contacto]){
 
   const fuerza = force; // ajusta si se siente poco o mucho
 
-  console.log("Aplicando empuje:", nx, ny, "magnitud:", magnitud);
+  //console.log("Aplicando empuje:", nx, ny, "magnitud:", magnitud);
 
   // Forzar que no esté bloqueado en ambos ejes antes de aplicar
   if (cuerpo.blocked.none === false) {
-    console.log("Jugador bloqueado:", cuerpo.blocked);
+    //console.log("Jugador bloqueado:", cuerpo.blocked);
     // si está bloqueado, aplicamos una pequeña corrección en el eje libre
     if (cuerpo.blocked.left) cuerpo.setVelocity(Math.abs(fuerza*0.5), cuerpo.velocity.y);
     if (cuerpo.blocked.right) cuerpo.setVelocity(-Math.abs(fuerza*0.5), cuerpo.velocity.y);
