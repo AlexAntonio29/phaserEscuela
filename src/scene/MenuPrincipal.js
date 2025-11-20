@@ -29,7 +29,7 @@ document.fonts.ready.then(() => {
   
   this.scene.start('StartGame');
 
-  //this.musica.pause();
+  this.musica.stop();
 
 
 });
@@ -104,7 +104,7 @@ this.tweens.add({
 this.titulo=this.add.image(0,0,'titulo').setOrigin(0)
 //
 // .setDisplaySize(this.widthPantalla,150)
-.setScale(0.1,0.1);
+.setScale(0.15,0.15);
 ;
 this.titulo.setPosition((this.widthPantalla/2)-(this.titulo.displayWidth/2),0);
 /*
@@ -120,7 +120,7 @@ this.tweens.add({
 
 
 
- this.bStart();
+ 
 
    this.musica = this.sound.add('musicaFondo', {
     loop: true,
@@ -128,6 +128,8 @@ this.tweens.add({
   });
 
   this.musica.play();
+
+  this.bStart();
 }
 
 
