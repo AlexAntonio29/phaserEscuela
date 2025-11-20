@@ -109,9 +109,7 @@ else {
                     .setDisplaySize(this.width,this.height)
                     .setPosition(this.x,this.y)
                     ;
-                    
-                  console.log("Creando item reloj");
-                  console.log(`Width:${this.width} Height:${this.height}`)
+                  
 
                   }
 

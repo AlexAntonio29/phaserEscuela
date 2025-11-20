@@ -6,7 +6,7 @@ export const armas=[
         'puntos':150, 
         'velocidad':300, 
         'tiempoDisparo':0,
-        'nivel':6, 
+        'nivel':1, 
         'diseno':'arma1', 
         'width': 40,
         'heigth':40,

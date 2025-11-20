@@ -56,7 +56,7 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
    this.listaEnemigos=[];
     
     this.puntosCreacionEnemigo=10;
-    this.topeCreacionEnemigos=500;
+    this.topeCreacionEnemigos=1;
 
     this.getPotenciadorPuntos=200;
     this.puntosPotenciadorAcumulador=1;
@@ -148,7 +148,7 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
 
     crearJoystick(){
      
-console.log("En Joystick");
+
     let url = 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexvirtualjoystickplugin.min.js';
     this.load.plugin('rexvirtualjoystickplugin', url, true);
      
@@ -210,7 +210,7 @@ crearEscenario(){
 
 
 
-    console.log(`width:${this.widthEscenario} height:${this.heightEscenario}`);
+    //console.log(`width:${this.widthEscenario} height:${this.heightEscenario}`);
     this.tileset = this.map.addTilesetImage('map-tecmm', 'tiles');
     //this.tileset2= this.map.addTilesetImage('map-tecmm2', 'tiles2');
   //  const tileset2 = map.addTilesetImage('[Base]BaseChip_pipo', 'tiles');
@@ -240,7 +240,7 @@ crearEscenario(){
 
 
     //this.physics.world.setBounds(0, 0, this.width, this.height);
-    console.log(this.map);
+    //console.log(this.map);
     this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
     this.cameras.main.setBounds(0,0,this.map.widthInPixels,this.map.heightInPixels);
 
@@ -421,12 +421,12 @@ movimientosPlayer(){
      this.player.getAtaque(this.listaEnemigos,this.contactoSprites,1,this.items_basura);
 
 
-     /*
+     
     if(this.player.getHabilitarCollision()){
-        console.log("Habilitando Collsion ITEM NUEVO");
+        //console.log("Habilitando Collsion ITEM NUEVO");
          this.collisionRecogerItemBasura(); 
          this.player.setHabilitarCollision(false);
-        }*/
+        }
     // console.log("ESTA ATACANDO: "+this.estaAtacando);
 
    
@@ -553,7 +553,7 @@ this.listaEnemigos.map(enemigo=>{
     ()=>{
         //console.log("Contacto enemigo con player");
           empujar(enemigo.getContainer(),this.player.getContainer(),0,this.contactoSprites,this);//
-          //this.player.setVida(1);
+          this.player.setVida(1);
           if(this.player.getVida()<=0)this.finalizarPartida("Has muerto") ;
     }, null, this
 );
@@ -692,7 +692,7 @@ this.physics.add.collider(this.player.getContainer(),this.muros);
             this.puntos+=Number(item.puntos);//puntosTemporales;
 
             //this.puntos=parseInt(this.puntos)+parseInt(item.puntos);
-            console.log("puntos: "+this.puntos);
+            //console.log("puntos: "+this.puntos);
             
             this.puntaje.setText((this.puntos));
             //Al superar cierta cantidad de puntos aparecera un nuevo enemigo
@@ -700,8 +700,8 @@ this.physics.add.collider(this.player.getContainer(),this.muros);
                
               this.puntosCreacionEnemigo=this.puntosCreacionEnemigo+200;
               
-              //if(this.topeCreacionEnemigos<20)
-                this.topeCreacionEnemigos+=1;
+              if(this.topeCreacionEnemigos<60)
+                this.topeCreacionEnemigos+=5;
             }
 
             if(this.puntos>=this.getPotenciadorPuntos)  this.getPotenciador();
@@ -987,7 +987,7 @@ this.input.keyboard.on('keyup-M', () => {
       this.crearEnemigo(this.topeCreacionEnemigos-this.listaEnemigos.length);
 
       
-      console.log("Creando enemigos segun el tope: ");
+     // console.log("Creando enemigos segun el tope: ");
 
     }
 

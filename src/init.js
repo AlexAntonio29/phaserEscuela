@@ -28,11 +28,11 @@ const config={ //configuracion del escenario
 var game= new Phaser.Game(config);//variable que ejecuta la constante config de arriba
 
 function preload(){
-    console.log("Preload");
+    //console.log("Preload");
 }
 
 function create(){
-    console.log("Create");
+    //console.log("Create");
 
     window.addEventListener('resize',()=>{
       const nuevoAncho=window.innerWidth;

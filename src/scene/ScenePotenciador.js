@@ -5,7 +5,7 @@ export class ScenePotenciador extends Phaser.Scene{
 
 constructor(){
     super('ScenePotenciador');
-    console.log("Estoy en Potenciador")
+    //console.log("Estoy en Potenciador")
 }
 
 init(data) {

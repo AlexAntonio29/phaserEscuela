@@ -10,7 +10,7 @@ export class player {
     this.texture = texture;
     this.x=x;
     this.y=y;
-    this.arma=armas[0];
+    this.arma;
     this.joystick=joystick;
     this.controles=controles;
     this.caminar=false;
@@ -387,7 +387,7 @@ if (caminar) {
       if((Phaser.Input.Keyboard.JustDown((this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)))||this.controles.ataque)&&!this.estaAtacando){
          this.estaAtacando=true;
 
-         console.log("dentro de ataque");
+         
 
         let spriteAtaque=this.scene.add.sprite(0,0,this.componentesAtaque.textura)
       // .setOrigin(0.5,0)//abajo
@@ -438,13 +438,18 @@ if (caminar) {
           spriteAtaque,
           enemigo.getContainer(),
           ()=>{
+
+              if (!enemigo) return;
+
+            if(enemigo.golpeado) return;
+               enemigo.golpeado=true;
         
             enemigo.setVida(parseInt((this.arma.ataque)*(this.arma.nivel)));
             
              if(enemigo.getVida()<=0){
               
               
-              //crearItemsBasura(this.scene,enemigo.dataEnemie.items,listaItems,enemigo.getPositionX(),enemigo.getpositionY(),false,this.sprite);
+              crearItemsBasura(this.scene,enemigo.dataEnemie.items,listaItems,enemigo.getPositionX(),enemigo.getpositionY(),false,this.sprite);
               enemigo.getContainer().destroy();
              // console.log("Enemigo Eliminado - Cantidad: "+ listaEnemigos.length);
                const index = listaEnemigos.indexOf(enemigo);

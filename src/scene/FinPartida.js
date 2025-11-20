@@ -2,7 +2,7 @@ export class FinPartida extends Phaser.Scene{ //cuando se termina la partida
 
 constructor(){
     super('FinPartida');
-    console.log("Estoy en FinPartida")
+    //console.log("Estoy en FinPartida")
 }
 
 init(data) {

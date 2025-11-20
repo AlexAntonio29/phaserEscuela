@@ -51,7 +51,7 @@ if(!listaContacto[contacto]){
     if (cuerpo) {
       cuerpo.setVelocity(0, 0);
       listaContacto[contacto] = false;
-      //empujado.setBounce(1); // si quieres restaurarlo
+      empujado.setBounce(1); // si quieres restaurarlo
     }
   });
   if(movCamara)
