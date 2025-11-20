@@ -86,12 +86,13 @@ create(){
 
     
 
+    let desplazamientoFondo=((this.fondo.displayWidth)-(this.widthPantalla));
     
 
 // Tween que lo mueve a la derecha y luego regresa
 this.tweens.add({
   targets: this.fondo,
-  x: -640, // desplaza hacia la izquierda para simular movimiento a la derecha
+  x: -desplazamientoFondo, // desplaza hacia la izquierda para simular movimiento a la derecha
   duration: 20000,
   yoyo: true, // regresa al punto inicial
   repeat: -1, // infinito
