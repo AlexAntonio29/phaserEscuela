@@ -1,6 +1,7 @@
 import  {empujar}  from "../funciones/empujar.js";
 import { crearItemsBasura } from "../funciones/crearItemsBasura.js";
 import { armas } from "../items/DataItemsPotenciadores.js";
+import {dataEnemigos} from "../enemies/DataEnemies.js"
 export class player {
 
   constructor(scene, texture, x = 20, y = 25, joystick,controles, keys) {
@@ -377,7 +378,7 @@ if (caminar) {
   setAtaque(){
   }
 
-  getAtaque(listaEnemigos,contacto,n,listaItems){
+  getAtaque(listaEnemigos,contacto,n,listaItems,widthEscenario,heightEscenario,contactoMov){
 
 
    
@@ -447,13 +448,26 @@ if (caminar) {
             enemigo.setVida(parseInt((this.arma.ataque)*(this.arma.nivel)));
             
              if(enemigo.getVida()<=0){
+                crearItemsBasura(this.scene,enemigo.dataEnemie.items,listaItems,enemigo.getPositionX(),enemigo.getpositionY(),false,this.sprite);
+             
+
+              let x=Math.floor(Math.random() * ((widthEscenario-30) - 0 + 1)) + 0;
+              let y=Math.floor(Math.random() * ((heightEscenario-30) - 0 + 1)) + 0;
+              let t=parseInt(enemigo.dataEnemie.id)-1;
+
+              
+              enemigo.setFullVida(dataEnemigos[t].vida);
+              enemigo.setEnemiePosition(x,y);
+              //enemigo
+              //enemigo.setMovimientoEnemigo(this.sprite,contactoMov[0],contactoMov[1],contactoMov[2]);
+
               
               
-              crearItemsBasura(this.scene,enemigo.dataEnemie.items,listaItems,enemigo.getPositionX(),enemigo.getpositionY(),false,this.sprite);
-              enemigo.getContainer().destroy();
+              
+             /*enemigo.getContainer().destroy();
              // console.log("Enemigo Eliminado - Cantidad: "+ listaEnemigos.length);
                const index = listaEnemigos.indexOf(enemigo);
-              if (index !== -1) listaEnemigos.splice(index, 1);
+              if (index !== -1) listaEnemigos.splice(index, 1);*/
                 this.habilitarCollision=true;
         //console.log("Enemigo Eliminado - Cantidad: " + listaEnemigos.length);
              }

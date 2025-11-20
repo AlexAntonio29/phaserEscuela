@@ -30,6 +30,10 @@ export class Enemies{
 
     }
 
+    setFullVida(n){
+      this.vida=n;
+    }
+
     getVida(){
       return Number(this.vida);
     }
@@ -83,7 +87,7 @@ export class Enemies{
     }
 
     setEnemiePosition(x,y){
-        this.enemigo.setPosition(x,y);
+        this.enemigo.setPosition(x,y).setActive(true).setVisible(true);;
     }
 
     getPositionX(){
@@ -109,7 +113,10 @@ export class Enemies{
     setMovimientoEnemigo(player,contacto,contactoAtaque,contactoEnemigo){
 
 
+      //console.log(`!contacto:${!contacto}, !this.vida${!(this.vida<=0)}, !contractoAtaque:${!contactoAtaque} !contactoEnemigo:${!contactoEnemigo}`)
       if(!contacto && !(this.vida<=0) && !contactoAtaque && !contactoEnemigo){
+
+        //console.log('DENTRO');
          
         let vel=this.velocidad;
         //console.log("Velocidad enemigo: "+vel);

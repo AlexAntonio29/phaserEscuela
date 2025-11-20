@@ -8,6 +8,7 @@ import { empujar } from "../funciones/empujar.js";
 import { itemTiempo } from "../items/ItemTiempo.js";
 import { armas } from "../items/DataItemsPotenciadores.js";
 import { crearItemsBasura } from "../funciones/crearItemsBasura.js";
+import { conjuntoArmas } from "../armas/conjuntoArmas.js"
 
 export class StartGame extends Phaser.Scene{//cuando inicia la partida
 
@@ -25,7 +26,9 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
 
      
       //agregar arma
-      this.armas=armas;
+      this.armas=new conjuntoArmas().getArmas();
+
+      
 
       //fuente del texto
 
@@ -418,7 +421,7 @@ getPlayer(){
 movimientosPlayer(){
      this.player.setMovimientoPlayer(this.contactoSprites[0]);
     
-     this.player.getAtaque(this.listaEnemigos,this.contactoSprites,1,this.items_basura);
+     this.player.getAtaque(this.listaEnemigos,this.contactoSprites,1,this.items_basura,this.widthEscenario,this.heightEscenario,this.contactoSprites);
 
 
      
@@ -700,8 +703,8 @@ this.physics.add.collider(this.player.getContainer(),this.muros);
                
               this.puntosCreacionEnemigo=this.puntosCreacionEnemigo+200;
               
-              if(this.topeCreacionEnemigos<60)
-                this.topeCreacionEnemigos+=5;
+              if(this.topeCreacionEnemigos<300)
+                this.topeCreacionEnemigos+=10;
             }
 
             if(this.puntos>=this.getPotenciadorPuntos)  this.getPotenciador();
@@ -996,7 +999,7 @@ this.input.keyboard.on('keyup-M', () => {
    
     
 
-    if(this.tiempo<=0) this.finalizarPartida("");
+    if(this.tiempo<=0) this.finalizarPartida("Se agotó el tiempo");
     else{
     this.tiempo--;
     this.cronometro.setText('Tiempo: ' + this.tiempo);}
@@ -1013,6 +1016,8 @@ finalizarPartida(n=""){
 
     console.log(this.scene);
     console.log("MENSAJE: "+n);
+  this.scene.stop('StartGame');
+  this.scene.restart();
   this.scene.start('FinPartida',{puntos:this.puntos,mensaje:n});
 
 }

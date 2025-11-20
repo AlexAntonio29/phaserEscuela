@@ -107,6 +107,8 @@ document.fonts.ready.then(() => {
 })
 .setInteractive()
 .on('pointerdown', () => {
+
+  
   
   this.scene.start('StartGame');
 
@@ -115,7 +117,7 @@ document.fonts.ready.then(() => {
 
 });
 
-this.botonRestart.setPosition(this.mensaje.x,this.mensaje.y+this.mensaje.height+10);
+this.botonRestart.setPosition(this.widthPantalla/2-this.botonRestart.width/2,this.mensaje.y+this.mensaje.height+10);
 
 
 this.tweens.add({
@@ -152,7 +154,7 @@ document.fonts.ready.then(() => {
 
 });
 
-this.botonMenu.setPosition(this.mensaje.x,this.botonRestart.y+this.botonRestart.height+10);
+this.botonMenu.setPosition(this.widthPantalla/2-this.botonMenu.width/2,this.botonRestart.y+this.botonRestart.height+10);
 
 
 this.tweens.add({
