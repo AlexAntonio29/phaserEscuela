@@ -82,15 +82,90 @@ create(){
     console.log("Create "+this.scene.key);
     this.cargarFondo();
     this.cargarTextos();
-    
+
     this.musica = this.sound.add('musicaFondoEnd', {
     loop: true,
     volume: 0.5   // volumen entre 0 y 1
   });
   this.musica.play();
 
+  this.cargarBotonReiniciar();
+  this.cargarBotonMenu();
+    
+}
+
+cargarBotonReiniciar(){
+    
+document.fonts.ready.then(() => {
+
+  this.botonRestart = this.add.text((this.widthPantalla)/2, this.heightPantalla/2, 'Reiniciar', {
+  fontSize: '32px',
+  fill: '#000',
+  backgroundColor: '#fff',
+  padding: { x: 80, y: 10 },
+  fontFamily:this.fontText
+})
+.setInteractive()
+.on('pointerdown', () => {
+  
+  this.scene.start('StartGame');
+
+  this.musica.stop();
 
 
+});
+
+this.botonRestart.setPosition(this.mensaje.x,this.mensaje.y+this.mensaje.height+10);
+
+
+this.tweens.add({
+  targets: this.botonRestart,
+  scaleX: this.botonRestart.scaleX * 1.1,
+  scaleY: this.botonRestart.scaleY * 1.1,
+  duration: 1000,
+  yoyo: true,
+  repeat: -1
+});
+
+//
+});
+}
+
+cargarBotonMenu(){
+
+document.fonts.ready.then(() => {
+
+  this.botonMenu = this.add.text((this.widthPantalla)/2, this.heightPantalla/2, 'Menu', {
+  fontSize: '32px',
+  fill: '#000',
+  backgroundColor: '#fff',
+  padding: { x: 110, y: 10 },
+  fontFamily:this.fontText
+})
+.setInteractive()
+.on('pointerdown', () => {
+  
+  this.scene.start('MenuPrincipal');
+
+  this.musica.stop();
+
+
+});
+
+this.botonMenu.setPosition(this.mensaje.x,this.botonRestart.y+this.botonRestart.height+10);
+
+
+this.tweens.add({
+  targets: this.botonMenu,
+  scaleX: this.botonMenu.scaleX * 1.1,
+  scaleY: this.botonMenu.scaleY * 1.1,
+  duration: 1000,
+  yoyo: true,
+  repeat: -1
+});
+
+//
+});
     
 }
 
