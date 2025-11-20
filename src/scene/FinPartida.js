@@ -50,6 +50,8 @@ cargarTextos(){
     this.heightPantalla=this.sys.game.config.height;
     console.log("Preload "+this.scene.key);
     this.load.image("imagenFondoEnd","./assets/fondoEnd.png");
+    this.load.audio('musicaFondoEnd','./sounds/fondoEceneEnd.mp3');
+    //fondoEceneEnd
 }
 
 cargarFondo(){
@@ -80,6 +82,14 @@ create(){
     console.log("Create "+this.scene.key);
     this.cargarFondo();
     this.cargarTextos();
+    
+    this.musica = this.sound.add('musicaFondoEnd', {
+    loop: true,
+    volume: 0.5   // volumen entre 0 y 1
+  });
+  this.musica.play();
+
+
 
     
 }
