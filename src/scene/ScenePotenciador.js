@@ -182,6 +182,14 @@ let btnActivar=this.add.text(0,0,"  Comprar  ",{
    
      // console.log("Creacion de item arma n:"+i+" positionX: "+positionX+" positionY: "+positionY);
     itemPotenciador.body.on('pointerdown', (pointer) => {
+
+      //agregar sonido
+     let sonidoAtaque = this.sound.add(itemPotenciador.atributos.sonido, {
+    loop: false,
+    volume: 1   // volumen entre 0 y 1
+  });
+
+      sonidoAtaque.play();
   console.log('texto titulo presionado, cuadro '+i);
   textoSeleccionPotenciador.setText(itemPotenciador.atributos.nombre);
   descripcionItem.setText(itemPotenciador.atributos.descripcion);
@@ -242,7 +250,7 @@ if(this.widthPantalla<this.heightPantalla) {
   this.puntos-=(this.seleccionItem.atributos.puntos)*(this.seleccionItem.atributos.nivel);
   this.puntaje.setText((this.puntos));
 
-  
+  this.touch.play();
   this.scene.resume('StartGame');
 
   this.armas[Number(this.seleccionItem.atributos.id)-1].nivel++;
@@ -405,6 +413,16 @@ scrollContainer.list.forEach(item=>{
 
 
   preload(){
+
+      this.load.audio("touch","./sounds/touch.mp3");
+      this.load.audio("touch2","./sounds/touch.mp3");
+
+       for(let i=1;i<=10;i++){
+       // this.load.audio('pop'+i,"./sounds/pop"+i+".mp3");
+        this.load.audio('ataque'+i,"./sounds/ataque"+i+".mp3");
+      
+      }
+
       this.widthPantalla=this.sys.game.config.width;
       this.heightPantalla=this.sys.game.config.height;
       this.fontText='FontArcade4';
@@ -419,7 +437,23 @@ scrollContainer.list.forEach(item=>{
      //this.scene.setVisible(false);
 }
 
+cargarSonidos(){
+  this.touch = this.sound.add('touch', {
+    loop: false,
+    volume: 1   // volumen entre 0 y 1
+  });
+
+  this.touch2 = this.sound.add('touch2', {
+    loop: false,
+    volume: 1   // volumen entre 0 y 1
+  });
+
+  
+
+}
+
 create(){
+  this.cargarSonidos();
     
     this.crearPotenciador();
 }

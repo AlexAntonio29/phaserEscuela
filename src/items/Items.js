@@ -146,9 +146,15 @@ else {
 
     setItem(){}
 
-    setRecoger(){
+    setRecoger(listaItems,item){
+
+
 
      this.graphics.destroy();
+
+     const index = listaItems.indexOf(item);
+              if (index !== -1) listaItems.splice(index, 1);
+
     }
 
 

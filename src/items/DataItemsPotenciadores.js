@@ -11,6 +11,7 @@ export const armas=[
         'width': 40,
         'heigth':40,
         'largoAtaque':false, 
+        'sonido':'ataque1',
         'descripcion':'Palo sirve para machacar a la basura'
     },
     {
@@ -25,6 +26,7 @@ export const armas=[
         'heigth':80,  
         'diseno':'arma2', 
         'largoAtaque':false, 
+        'sonido':'ataque2',
         'descripcion':'Rastrillo para rastrear a la basura'
     },
     {
@@ -39,6 +41,7 @@ export const armas=[
         'heigth':70,  
         'diseno':'arma3', 
         'largoAtaque':false, 
+        'sonido':'ataque3',
         'descripcion':'Para escarbar y enterrar a tus enemigos'
     },
     {
@@ -53,6 +56,7 @@ export const armas=[
         'heigth':30,  
         'diseno':'arma4', 
         'largoAtaque':false, 
+        'sonido':'ataque4',
         'descripcion':'Para sembrar plantas, tambien sirven como guantes de boxeo'
     },
     {
@@ -66,7 +70,8 @@ export const armas=[
         'width': 40,
         'heigth':100,  
         'diseno':'arma5', 
-        'largoAtaque':true, 
+        'largoAtaque':true,
+        'sonido':'ataque5', 
         'descripcion':'Comida favorita de los pandas y escencial para la picar la basura '
     },
     {
@@ -80,7 +85,8 @@ export const armas=[
         'width': 20,
         'heigth':20,  
         'diseno':'arma6', 
-        'largoAtaque':true, 
+        'largoAtaque':true,
+        'sonido':'ataque6', 
         'descripcion':'Util para sembrar lo mas rapido posible y disparar.'
     },
     {
@@ -95,20 +101,22 @@ export const armas=[
         'heigth':15,  
         'diseno':'arma7', 
         'largoAtaque':true, 
+        'sonido':'ataque7',
         'descripcion':'Sirve para la regar las plantas y para limpiar la suciedad.'
     },
     {
         'id':'8',
         'nombre':'Martillo de raices',
         'ataque':30,
-        'puntos':600, 
+        'puntos':50, 
         'tiempoDisparo':0,
         'velocidad':150, 
         'nivel':3, 
-        'width': 150,
-        'heigth':150,  
+        'width': 70,
+        'heigth':70,  
         'diseno':'arma8', 
-        'largoAtaque':false, 
+        'largoAtaque':false,
+        'sonido':'ataque8', 
         'descripcion':'Util para el trabajo y aplasta.'
     },
     {
@@ -123,6 +131,7 @@ export const armas=[
         'heigth':20,  
         'diseno':'arma9',
         'largoAtaque':true, 
+        'sonido':'ataque9',
         'descripcion':'A todos nos gusta la fruta'
     },
     {
@@ -136,7 +145,8 @@ export const armas=[
         'width': 80,
         'heigth':80,  
         'diseno':'arma10', 
-        'largoAtaque':true, 
+        'largoAtaque':true,
+        'sonido':'ataque10', 
         'descripcion':'Maquina asesina mortal ultra super poderosa 3000'
     },
 ]

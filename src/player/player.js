@@ -12,6 +12,9 @@ export class player {
     this.x=x;
     this.y=y;
     this.arma;
+    this.sonidoAtaque;
+    this.spriteAtaque;
+
     this.joystick=joystick;
     this.controles=controles;
     this.caminar=false;
@@ -87,7 +90,7 @@ export class player {
     */
 
 
-    console.log("CREACION del player");
+    //console.log("CREACION del player");
   }
 
   getHabilitarCollision(){
@@ -103,7 +106,7 @@ export class player {
   getCaminar(){
 
 
-    console.log("Caminando");
+    //console.log("Caminando");
 
      this.scene.anims.create({
         key: "player_camina",
@@ -115,7 +118,7 @@ export class player {
   }
 
   getNoCaminar(){
-    console.log("NO Caminando");
+   // console.log("NO Caminando");
      this.scene.anims.create({
         key: "player_estatico",
         frames: this.scene.anims.generateFrameNumbers('player', { start: 1, end: 1 }),
@@ -130,12 +133,12 @@ export class player {
 
      this.keys.W.on('down', () => {
     this.sprite.play('player_caminar');
-    console.log("AQUI en caminar");
+    //console.log("AQUI en caminar");
   });
 
   this.keys.W.on('up', () => {
     this.sprite.play('player_estatico');
-    console.log("AQUI en estatico")
+    //console.log("AQUI en estatico")
   });
   }
 
@@ -365,20 +368,26 @@ if (caminar) {
   setArma(arma){
 
     this.arma=arma;
+    this.sonidoAtaque=this.scene.sound.add(arma.sonido,{
+        loop:false,
+        volume:1
+      });
+
   
 
   }
 
   getArma(){
-    console.log("GetArma: ");
-    console.log(this.arma);
+    //console.log("GetArma: ");
+    //console.log(this.arma);
     return this.arma;
   }
 
   setAtaque(){
+
   }
 
-  getAtaque(listaEnemigos,contacto,n,listaItems,widthEscenario,heightEscenario,contactoMov){
+  getAtaque(listaEnemigos,contacto,n,listaItems,widthEscenario,heightEscenario,contactoMov,sound){
 
 
    
@@ -389,8 +398,9 @@ if (caminar) {
          this.estaAtacando=true;
 
          
+        if(this.spriteAtaque==undefined){
 
-        let spriteAtaque=this.scene.add.sprite(0,0,this.componentesAtaque.textura)
+        this.spriteAtaque=this.scene.add.sprite(0,0,this.componentesAtaque.textura)
       // .setOrigin(0.5,0)//abajo
        //.setOrigin(1,0.5)//izquierda
        //.setOrigin(0,0.5)//derecha
@@ -402,13 +412,33 @@ if (caminar) {
         .setPosition(this.sprite.x+this.sprite.displayWidth/2, this.sprite.y+this.sprite.displayHeight/2);
         
         
-        this.scene.physics.add.existing(spriteAtaque);
-        spriteAtaque.body.setCollideWorldBounds(true);
+        this.scene.physics.add.existing(this.spriteAtaque);
+        this.spriteAtaque.body.setCollideWorldBounds(true);
+      
+      } else{
+        this.spriteAtaque
+        .setOrigin(this.componentesAtaque.x,this.componentesAtaque.y)
+        .setDisplaySize(Number(this.arma.width)*(this.arma.nivel),Number(this.arma.heigth)*(this.arma.nivel))
+        .setPosition(this.sprite.x+this.sprite.displayWidth/2, this.sprite.y+this.sprite.displayHeight/2)
+        .setTexture(this.componentesAtaque.textura);
+             ;
+
+             //this.scene.physics.add.existing(this.spriteAtaque);
+        //this.spriteAtaque.body.setCollideWorldBounds(true);
+      }
+
+      this.spriteAtaque.setVisible(true);
+    this.spriteAtaque.body.enable = true;
+
+
 
         //this.ataque.setPosition((this.sprite.x)+this.componentesAtaque.x,this.sprite.y+this.componentesAtaque.y);
 
        
         this.sprite.setVelocity(0);
+
+        //cargarSonido
+        this.sonidoAtaque.play();
 
 
 
@@ -416,27 +446,29 @@ if (caminar) {
           switch(this.componentesAtaque.textura){
 
             case 'ataqueLateralArriba':
-              spriteAtaque.body.setVelocityY(-this.arma.tiempoDisparo*(this.arma.nivel));
+              this.spriteAtaque.body.setVelocityY(-this.arma.tiempoDisparo*(this.arma.nivel));
 
             break;
             case 'ataqueLateralAbajo':
-              spriteAtaque.body.setVelocityY(this.arma.tiempoDisparo*(this.arma.nivel));
+              this.spriteAtaque.body.setVelocityY(this.arma.tiempoDisparo*(this.arma.nivel));
 
             break;
             case 'ataqueLateralDerecha':
-              spriteAtaque.body.setVelocityX(this.arma.tiempoDisparo*(this.arma.nivel));
+              this.spriteAtaque.body.setVelocityX(this.arma.tiempoDisparo*(this.arma.nivel));
             break;
             case 'ataqueLateralIzquierda':
-              spriteAtaque.body.setVelocityX(-this.arma.tiempoDisparo*(this.arma.nivel));
+              this.spriteAtaque.body.setVelocityX(-this.arma.tiempoDisparo*(this.arma.nivel));
 
             break;
             default:
               break;
         }
 
+        console.log(this.scene.physics.world.colliders.length)
+
            listaEnemigos.map(enemigo=>{
           this.scene.physics.add.overlap(
-          spriteAtaque,
+          this.spriteAtaque,
           enemigo.getContainer(),
           ()=>{
 
@@ -446,9 +478,10 @@ if (caminar) {
                enemigo.golpeado=true;
         
             enemigo.setVida(parseInt((this.arma.ataque)*(this.arma.nivel)));
+            sound.play();
             
              if(enemigo.getVida()<=0){
-                crearItemsBasura(this.scene,enemigo.dataEnemie.items,listaItems,enemigo.getPositionX(),enemigo.getpositionY(),false,this.sprite);
+                //crearItemsBasura(this.scene,enemigo.dataEnemie.items,listaItems,enemigo.getPositionX(),enemigo.getpositionY(),false,this.sprite);
              
 
               let x=Math.floor(Math.random() * ((widthEscenario-30) - 0 + 1)) + 0;
@@ -471,7 +504,7 @@ if (caminar) {
                 this.habilitarCollision=true;
         //console.log("Enemigo Eliminado - Cantidad: " + listaEnemigos.length);
              }
-          else empujar(spriteAtaque,enemigo.getContainer(),n,contacto,this.scene);
+          else empujar(this.spriteAtaque,enemigo.getContainer(),n,contacto,this.scene);
           enemigo.setGolpeado();
 
           // contacto[n]=false;
@@ -521,7 +554,8 @@ this.scene.physics.add.overlap(spriteAtaque, this.grupoEnemigos, (ataque, enemig
 
        this.scene.time.delayedCall(this.arma.velocidad, () => {
     this.estaAtacando=false;
-    spriteAtaque.destroy();
+    this.spriteAtaque.setVisible(false);
+    this.spriteAtaque.body.enable = false;
     
   });
 

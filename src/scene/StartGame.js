@@ -20,13 +20,16 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
     //aqui se cargan las variables globales desde preload()
     cargarVariablesGlobales(){
 
-      this.tiempo=100;
+      this.tiempo=1000;
       this.tiempoProgresivo=0;//el tiempo progresivo sirve para llevar el tiempo siempre adelante
       this.tiempoParaCrearEnemigos=10;
 
      
       //agregar arma
       this.armas=new conjuntoArmas().getArmas();
+
+      this.itemsOrganicos=itemsOrganicos.map(a => ({ ...a }));
+      this.itemsInorganicos=itemsInorganicos.map(a => ({ ...a }));
 
       
 
@@ -53,10 +56,13 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
     this.estaAtacando=false;//esto me sirve para generar una condicional de tiempo de ataque asi no genera errores
 
      this.cantidadRelojes=20;
+     //relojes
+     this.listaRelojes=[];
 
        //TODO REFEREIDO A ENEMIGOS
 
    this.listaEnemigos=[];
+   
     
     this.puntosCreacionEnemigo=10;
     this.topeCreacionEnemigos=1;
@@ -74,6 +80,37 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
 
 
     }
+
+    crearSonidos(){
+      //sonido items basura
+      for(let i=1;i<=10;i++){
+        this.load.audio('pop'+i,"./sounds/pop"+i+".mp3");
+        this.load.audio('ataque'+i,"./sounds/ataque"+i+".mp3");
+      
+      }
+
+     // this.sonidoAtaquePlayer;
+      
+
+      
+
+      this.load.audio("powerUp","./sounds/powerUp.mp3");
+
+      this.load.audio("fondoStart","./sounds/fondoStart.mp3");
+
+      this.load.audio("potenciador","./sounds/woo.mp3");
+
+      this.load.audio("touch","./sounds/touch.mp3");
+
+      this.load.audio("golpeEnemie","./sounds/golpeEnemie2.mp3");
+
+      this.load.audio("golpeToPlayer","./sounds/golpeToPlayer.mp3");
+
+      this.load.audio("reloj","./sounds/reloj.mp3");
+      
+    }
+
+    
   
 
     cargarImagenes(){
@@ -108,8 +145,8 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
     for(let i=0;i<cantidadItems;i++){
 
       this.load.spritesheet("item_basura"+(i+1), "./assets/items/item_basura"+(i+1)+".png", {
-  frameWidth: 128,
-  frameHeight: 128
+  frameWidth: 32,
+  frameHeight: 32
 });
 
     }
@@ -135,8 +172,8 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
       for(let i=0;i<=3;i++){
 
       this.load.spritesheet(dataEnemigos[i].diseno, "./assets/enemies/"+dataEnemigos[i].diseno+".png", {
-  frameWidth: 128,
-  frameHeight: 128
+  frameWidth: 32,
+  frameHeight: 32
 });
 
 //console.log("Creado "+dataEnemigos[i].diseno+" de directorio: ./assets/enemies/"+dataEnemigos[i].diseno+".png");
@@ -185,6 +222,8 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
       this.cargarTeclar();
 
       this.cargarBotonesTeclas();
+
+      this.crearSonidos();
    
     
      
@@ -281,7 +320,7 @@ crearArboles(){
 
 crearItemReloj(){
 
-  this.listaRelojes=[];
+  
 
   for(let i=0;i<=this.cantidadRelojes;i++){
 
@@ -421,13 +460,13 @@ getPlayer(){
 movimientosPlayer(){
      this.player.setMovimientoPlayer(this.contactoSprites[0]);
     
-     this.player.getAtaque(this.listaEnemigos,this.contactoSprites,1,this.items_basura,this.widthEscenario,this.heightEscenario,this.contactoSprites);
+     this.player.getAtaque(this.listaEnemigos,this.contactoSprites,1,this.items_basura,this.widthEscenario,this.heightEscenario,this.contactoSprites,this.golpeEnemie);
 
 
      
     if(this.player.getHabilitarCollision()){
         //console.log("Habilitando Collsion ITEM NUEVO");
-         this.collisionRecogerItemBasura(); 
+        // this.collisionRecogerItemBasura(); 
          this.player.setHabilitarCollision(false);
         }
     // console.log("ESTA ATACANDO: "+this.estaAtacando);
@@ -554,9 +593,9 @@ this.listaEnemigos.map(enemigo=>{
     this.player.getContainer(),
     enemigo.getContainer(),
     ()=>{
-        //console.log("Contacto enemigo con player");
+          this.golpeToPlayer.play();
           empujar(enemigo.getContainer(),this.player.getContainer(),0,this.contactoSprites,this);//
-          this.player.setVida(1);
+          //this.player.setVida(1);
           if(this.player.getVida()<=0)this.finalizarPartida("Has muerto") ;
     }, null, this
 );
@@ -651,38 +690,51 @@ this.physics.add.collider(this.player.getContainer(),this.muros);
         item.cuerpo.getContainer(),
         ()=>{
 
+          let numAleatorio=Math.floor(Math.random() * (10 - 1 + 1)) + 1;
+
+          let recogerBasura = this.sound.add('pop'+numAleatorio, {
+    loop: false,
+    volume: 1   // volumen entre 0 y 1
+  });
+
+            recogerBasura.play();
+
           this.puntos=Number(this.puntaje.text);
 
           
 
           
+          
           //organizar puntos en items
           let cantidadItem;
           if(item.categoria=="organico"){
             
-            cantidadItem=parseInt(itemsOrganicos[(parseInt(item.id_objeto)-1)].cantidad)+1;
-            itemsOrganicos[(parseInt(item.id_objeto)-1)].cantidad=cantidadItem;
+            cantidadItem=parseInt(this.itemsOrganicos[(parseInt(item.id_objeto)-1)].cantidad)+1;
+            this.itemsOrganicos[(parseInt(item.id_objeto)-1)].cantidad=cantidadItem;
             
 
 
           }
             else if(item.categoria=="inorganico"){
               
-               cantidadItem=parseInt(itemsInorganicos[parseInt(item.id_objeto)-1].cantidad)+1;
-               itemsInorganicos[(parseInt(item.id_objeto)-1)].cantidad=cantidadItem;
+               cantidadItem=parseInt(this.itemsInorganicos[parseInt(item.id_objeto)-1].cantidad)+1;
+               this.itemsInorganicos[(parseInt(item.id_objeto)-1)].cantidad=cantidadItem;
 
                
                
             }
+            
 
-            this.hudContainerMochila.destroy();
+            /*this.hudContainerMochila.destroy();
             this.hudBotonMochila.destroy();
-            this.hudMochila(this);
+            this.hudMochila(this);*/
 
 
            
-            item.cuerpo.setRecoger();//se elimina el item
+            item.cuerpo.setRecoger(this.items_basura,item);//se elimina el item
 
+            
+            /*
             let puntosTemporales=0;
 
             itemsOrganicos.map(item=>{
@@ -690,9 +742,9 @@ this.physics.add.collider(this.player.getContainer(),this.muros);
             });
             itemsInorganicos.map(item=>{
                  puntosTemporales=puntosTemporales+(parseInt(item.cantidad)*parseInt(item.puntos));
-            });
+            });*/
             
-            this.puntos+=Number(item.puntos);//puntosTemporales;
+            this.puntos+=Number(item.puntos);
 
             //this.puntos=parseInt(this.puntos)+parseInt(item.puntos);
             //console.log("puntos: "+this.puntos);
@@ -703,10 +755,11 @@ this.physics.add.collider(this.player.getContainer(),this.muros);
                
               this.puntosCreacionEnemigo=this.puntosCreacionEnemigo+200;
               
-              if(this.topeCreacionEnemigos<300)
-                this.topeCreacionEnemigos+=10;
+              if(this.topeCreacionEnemigos<100)
+                this.topeCreacionEnemigos+=0;
             }
 
+            //verifica si es candidato para obtener power Up
             if(this.puntos>=this.getPotenciadorPuntos)  this.getPotenciador();
             //this.crearEnemigo(this.topeCreacionEnemigos-this.listaEnemigos.length);
         }
@@ -727,7 +780,9 @@ this.physics.add.collider(this.player.getContainer(),this.muros);
 
       this.getPotenciadorPuntos+=200*this.puntosPotenciadorAcumulador;
 
-      this.puntosPotenciadorAcumulador++;  
+      this.puntosPotenciadorAcumulador++; 
+      
+      this.sonidoPotenciador.play();
 
 this.scene.launch('ScenePotenciador',{scene:this.scene,puntos:this.puntos,player:this.player,puntaje:this.puntaje,armas:this.armas});
 
@@ -737,13 +792,18 @@ this.scene.launch('ScenePotenciador',{scene:this.scene,puntos:this.puntos,player
 
     collisionRecogerItemTiempo(){
 
+     
+
+      
       this.listaRelojes.map(reloj=>{
       this.physics.add.overlap(reloj.getContainer(),this.player.getContainer(),()=>{
+        this.sonidoReloj.play();
+        this.powerUp.play();
         let tiempoExtra=Math.floor(Math.random() * (50 - 10 + 1)) + 10;
 
         this.tiempo+=tiempoExtra;
 
-        reloj.setRecoger();
+        reloj.setRecoger(this.listaRelojes,reloj);
       })
       })
 
@@ -859,7 +919,7 @@ crearHUD(){
     let ajustadorAltura=0
     let ajustadorAnchura=0;
 
-      itemsOrganicos.map(item=>{
+      this.itemsOrganicos.map(item=>{
 
         
       this.hudContainerItemCantidadMochilaOrganica=scene.add.container(0,this.tamañoTextoStandard+10+ajustadorAltura);
@@ -895,7 +955,7 @@ crearHUD(){
 
       ajustadorAltura=0;
 
-           itemsInorganicos.map(item=>{
+      this.itemsInorganicos.map(item=>{
 
         
       let hudContainerItemCantidadMochilaInorganica=scene.add.container(ajustadorAnchura,this.tamañoTextoStandard+10+ajustadorAltura);
@@ -1016,6 +1076,7 @@ finalizarPartida(n=""){
 
     console.log(this.scene);
     console.log("MENSAJE: "+n);
+  this.musicaFondo.stop();
   this.scene.stop('StartGame');
   this.scene.restart();
   this.scene.start('FinPartida',{puntos:this.puntos,mensaje:n});
@@ -1081,6 +1142,49 @@ if(this.widthPantalla>=900){ this.joyStick.base.setAlpha(0);
 this.joystickCursors = this.joyStick.createCursorKeys();
     }
 
+
+    cargarSonido(){
+
+      this.golpeEnemie=this.sound.add("golpeEnemie",{
+        loop:false,
+        volume:1
+      });
+
+      this.powerUp=this.sound.add("powerUp",{
+        loop:false,
+        volume:1
+      });
+
+       this.sonidoReloj=this.sound.add('reloj', {
+    loop: false,
+    volume: 1   // volumen entre 0 y 1
+  });
+
+      this.musicaFondo = this.sound.add('fondoStart', {
+    loop: true,
+    volume: 0.5   // volumen entre 0 y 1
+  });
+
+  
+
+  this.musicaFondo.play();
+
+  this.touch = this.sound.add('touch', {
+    loop: false,
+    volume: 1   // volumen entre 0 y 1
+  });
+
+  this.sonidoPotenciador=this.sound.add('potenciador', {
+    loop: false,
+    volume: 1   // volumen entre 0 y 1
+  });
+
+  this.golpeToPlayer=this.sound.add("golpeToPlayer",{
+    loop:false,
+    volume:1
+  });
+    }
+
     
 
 //El create es donde acomo las cosas para que tengan un orden
@@ -1125,6 +1229,7 @@ create(){
     this.crearHUD();
 
     //this.crearAnimaciones();
+    this.cargarSonido();
     
 
     

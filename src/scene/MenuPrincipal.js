@@ -15,17 +15,19 @@ bStart(){
     //console.log(this.scene);
   
 
-document.fonts.ready.then(() => {
+document.fonts.load(`32px ${this.fontText}`).then(() => {
 
-  this.boton = this.add.text((this.widthPantalla)/2, this.heightPantalla/2, 'Iniciar', {
+  this.boton = this.add.text((this.widthPantalla)/2, this.heightPantalla/2, 'Jugar', {
   fontSize: '32px',
   fill: '#000',
-  backgroundColor: '#79E136',
+  backgroundColor: '#fff',
   padding: { x: 80, y: 30 },
   fontFamily:this.fontText
 })
 .setInteractive()
 .on('pointerdown', () => {
+
+  this.touch.play();
   
   this.scene.start('StartGame');
 
@@ -34,7 +36,7 @@ document.fonts.ready.then(() => {
 
 });
 
-this.boton.setPosition(((this.widthPantalla)/2)-this.boton.width/2,(this.heightPantalla/2)-this.boton.height/2);
+this.boton.setPosition(((this.widthPantalla)/2)-this.boton.width/2,this.titulo.y+this.titulo.displayHeight+10);
 
 
 this.tweens.add({
@@ -61,19 +63,34 @@ this.tweens.add({
     this.load.image("imagenFondo","./assets/fondoMain.png");
     this.load.image("titulo","./assets/tituloMain.png");
     this.load.audio('musicaFondo','./sounds/menu.mp3');
+    this.load.audio("touch","./sounds/touch2.mp3");
     this.fontText='FontArcade3'
     this.widthPantalla=this.sys.game.config.width;
     this.heightPantalla=this.sys.game.config.height;
     //console.log("Preload "+this.scene.key);
 }
 
+cargarSonidos(){
+  
+   this.musica = this.sound.add('musicaFondo', {
+    loop: true,
+    volume: 0.5   // volumen entre 0 y 1
+  });
 
+  this.touch = this.sound.add('touch', {
+    loop: false,
+    volume: 1   // volumen entre 0 y 1
+  });
+
+
+
+}
 
 
 create(){
    // console.log("Create "+this.scene.key);
    
-
+    
     this.scale.resize(this.widthPantalla,this.heightPantalla);
 
 
@@ -104,7 +121,8 @@ this.tweens.add({
 this.titulo=this.add.image(0,0,'titulo').setOrigin(0)
 //
 // .setDisplaySize(this.widthPantalla,150)
-.setScale(0.15,0.15);
+
+.setScale(0.11,0.11);
 ;
 this.titulo.setPosition((this.widthPantalla/2)-(this.titulo.displayWidth/2),0);
 /*
@@ -121,11 +139,7 @@ this.tweens.add({
 
 
  
-
-   this.musica = this.sound.add('musicaFondo', {
-    loop: true,
-    volume: 0.5   // volumen entre 0 y 1
-  });
+this.cargarSonidos();
 
   this.musica.play();
 

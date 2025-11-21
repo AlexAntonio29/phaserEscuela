@@ -2,7 +2,7 @@ export class Enemies{
 
     constructor(scene, dataEnemie, x=0,y=0){
 
-      
+        
         this.scene=scene;
         this.dataEnemie=dataEnemie;
         this.velocidad=Math.floor(Math.random() * ((Number(this.dataEnemie.velocidad)) - (Number(this.dataEnemie.velocidad)-30) + 1)) + (Number(this.dataEnemie.velocidad)-30);
