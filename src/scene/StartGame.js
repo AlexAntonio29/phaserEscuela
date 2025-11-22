@@ -61,8 +61,8 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
 
        //TODO REFEREIDO A ENEMIGOS
 
-   this.listaEnemigos=[];
-   
+   this.listaEnemigos=this.physics.add.group();
+
     
     this.puntosCreacionEnemigo=10;
     this.topeCreacionEnemigos=1;
@@ -70,7 +70,7 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
     this.getPotenciadorPuntos=200;
     this.puntosPotenciadorAcumulador=1;
 
-    this.items_basura=[];
+    this.items_basura=this.physics.add.group();
     }
 
     cargarBotonesTeclas(){  
@@ -369,8 +369,12 @@ crearEnemigo(n=1){
    
    let x=Math.floor(Math.random() * ((this.widthEscenario-30) - 0 + 1)) + 0;
     let y=Math.floor(Math.random() * ((this.heightEscenario-30) - 0 + 1)) + 0;
+      
+    let enemigo=new Enemies(this,JSON.parse(JSON.stringify(dataEnemigos[valor])),x,y);
+    this.listaEnemigos.add(enemigo);
+
    
-    this.listaEnemigos.push(new Enemies(this,JSON.parse(JSON.stringify(dataEnemigos[valor])),x,y));
+    
     
     
     /*
@@ -390,10 +394,10 @@ crearEnemigo(n=1){
   
    
 
-     this.collisionPlayerEnemigo();
+    // this.collisionPlayerEnemigo();
      //this.collisionEnemigoEnemigo();
-     this.colisionesEnemigo();
-  } else console.log("Tope al maximo no se crearan enemigo: "+this.listaEnemigos.length);
+     //this.colisionesEnemigo();
+  } else console.log("Tope al maximo no se crearan enemigo: "+this.listaEnemigos.countActive(true));
   
 
    
@@ -403,7 +407,8 @@ crearEnemigo(n=1){
 
 movimientosEnemigo(){
      
-     this.listaEnemigos.map(enemigo=>{
+     this.listaEnemigos.children.iterate(enemigo=>{
+      
       enemigo.setMovimientoEnemigo(this.player.getContainer(),this.contactoSprites[0],this.contactoSprites[1],this.contactoSprites[2]);
      })
 
@@ -418,7 +423,7 @@ movimientosEnemigo(){
 getPlayer(){
 
   
-    this.player=new player(this, 'player',30,40,this.joystickCursors, this.controles, this.keys);
+    this.player=new player(this, 'player',30,40,this.joystickCursors, this.controles, this.keys,this.listaEnemigos);
 
 
   
@@ -576,51 +581,35 @@ colisionesEnemigo(){
 this.collisionEnemigosArboles();
   this.collisionEnemigosEdificios();
   this.collisionEnemigosMuros();
+  this.collisionPlayerEnemigo();
 }
 
 //FUNCIONES DE LAS COLISIONES
 
+    contactoPlayerEnemigo(player,enemigo){
+       console.log(this.golpeToPlayer);
+       this.golpeToPlayer.play();
+          
+          empujar(enemigo.getContainer(),this.player.getContainer(),0,this.contactoSprites,this);//
+          this.player.setVida(1);
+          if(this.player.getVida()<=0)this.finalizarPartida("Has muerto") ;
+    }
   //colision al contacto del player con el enemigo
       collisionPlayerEnemigo(){
- 
-
-
-   
-
-
-this.listaEnemigos.map(enemigo=>{
- this.physics.add.collider(
-    this.player.getContainer(),
-    enemigo.getContainer(),
-    ()=>{
-          this.golpeToPlayer.play();
-          empujar(enemigo.getContainer(),this.player.getContainer(),0,this.contactoSprites,this);//
-          //this.player.setVida(1);
-          if(this.player.getVida()<=0)this.finalizarPartida("Has muerto") ;
-    }, null, this
-);
-})
-
-   
-
-    
-
-  
+        
+ this.physics.add.collider(this.player.getContainer(),this.listaEnemigos,this.contactoPlayerEnemigo,null,this);
 
 }
+
+    contactoEnemigoEnemigo(a,b){
+      
+      empujar(a,b,2,this.contactoSprites,this,400,false);
+    }
 //colision entre los enemigos para que no transpasen
       collisionEnemigoEnemigo(){
  // this.physics.collider();
- 
- this.listaEnemigos.forEach((a, i) => {
-  for (let j = i + 1; j < this.listaEnemigos.length; j++) {
-    const b = this.listaEnemigos[j];
-    this.physics.add.collider(a.getContainer(), b.getContainer(),()=>{
-     empujar(a.getContainer(),b.getContainer(),2,this.contactoSprites,this,400,false);
-    });
-    //console.log("Creacion de colision de enemigos");
-  }
-});
+
+    this.physics.add.collider(this.listaEnemigos, this.listaEnemigos,this.contactoEnemigoEnemigo, null, this);
 
 
 }
@@ -645,50 +634,31 @@ this.physics.add.collider(this.player.getContainer(),this.muros);
 
             collisionEnemigosArboles(){
 
-              this.listaEnemigos.map(enemigo=>{
-
-                  if(enemigo && this.arboles){
-
-                 this.physics.add.collider(enemigo.getContainer(),this.arboles);
-                  }
-              });
+                 this.physics.add.collider(this.listaEnemigos,this.arboles);
+                  
+             
    
 
 }//s
 
       collisionEnemigosMuros(){
-        this.listaEnemigos.map(enemigo=>{
+        
 
-                  if(enemigo && this.muros){
-
-                 this.physics.add.collider(enemigo.getContainer(),this.muros);
-                  }
-              });
+                 this.physics.add.collider(this.listaEnemigos,this.muros);
+                  
       }
 
        collisionEnemigosEdificios(){
-        this.listaEnemigos.map(enemigo=>{
 
-                  if(enemigo && this.edificios){
-
-                 this.physics.add.collider(enemigo.getContainer(),this.edificios);
-                  }
-              });
+                 this.physics.add.collider(this.listaEnemigos,this.edificios);
+                 
       }
 
 
 
+        contactoPlayerItem(player,item){
 
-//colision para cuando el player recoge el itemBasura
-      collisionRecogerItemBasura(){
-
-
-    this.items_basura.forEach( (item, index)=>{
-
-        this.physics.add.overlap(
-        this.player.getContainer(),
-        item.cuerpo.getContainer(),
-        ()=>{
+          console.log(item.puntos);
 
           let numAleatorio=Math.floor(Math.random() * (10 - 1 + 1)) + 1;
 
@@ -709,29 +679,31 @@ this.physics.add.collider(this.player.getContainer(),this.muros);
           let cantidadItem;
           if(item.categoria=="organico"){
             
-            cantidadItem=parseInt(this.itemsOrganicos[(parseInt(item.id_objeto)-1)].cantidad)+1;
-            this.itemsOrganicos[(parseInt(item.id_objeto)-1)].cantidad=cantidadItem;
+            cantidadItem=parseInt(this.itemsOrganicos[(parseInt(item.id)-1)].cantidad)+1;
+            this.itemsOrganicos[(parseInt(item.id)-1)].cantidad=cantidadItem;
             
 
 
           }
             else if(item.categoria=="inorganico"){
               
-               cantidadItem=parseInt(this.itemsInorganicos[parseInt(item.id_objeto)-1].cantidad)+1;
-               this.itemsInorganicos[(parseInt(item.id_objeto)-1)].cantidad=cantidadItem;
+               cantidadItem=parseInt(this.itemsInorganicos[parseInt(item.id)-1].cantidad)+1;
+               this.itemsInorganicos[(parseInt(item.id)-1)].cantidad=cantidadItem;
 
                
                
             }
             
 
-            /*this.hudContainerMochila.destroy();
+            this.hudContainerMochila.destroy();
             this.hudBotonMochila.destroy();
-            this.hudMochila(this);*/
+            this.hudMochila(this);
+
+            
 
 
-           
-            item.cuerpo.setRecoger(this.items_basura,item);//se elimina el item
+           this.puntos+=Number(item.puntos);
+            this.items_basura.remove(item,true,true);
 
             
             /*
@@ -744,7 +716,7 @@ this.physics.add.collider(this.player.getContainer(),this.muros);
                  puntosTemporales=puntosTemporales+(parseInt(item.cantidad)*parseInt(item.puntos));
             });*/
             
-            this.puntos+=Number(item.puntos);
+            
 
             //this.puntos=parseInt(this.puntos)+parseInt(item.puntos);
             //console.log("puntos: "+this.puntos);
@@ -756,16 +728,24 @@ this.physics.add.collider(this.player.getContainer(),this.muros);
               this.puntosCreacionEnemigo=this.puntosCreacionEnemigo+200;
               
               if(this.topeCreacionEnemigos<100)
-                this.topeCreacionEnemigos+=0;
+                this.topeCreacionEnemigos+=10;
             }
 
             //verifica si es candidato para obtener power Up
             if(this.puntos>=this.getPotenciadorPuntos)  this.getPotenciador();
             //this.crearEnemigo(this.topeCreacionEnemigos-this.listaEnemigos.length);
+        
         }
+//colision para cuando el player recoge el itemBasura
+      collisionRecogerItemBasura(){
+
+        this.physics.add.overlap(
+        this.player.getContainer(),
+        this.items_basura,
+        this.contactoPlayerItem,null,this
     );
 
-    });
+    
 
     
 }  
@@ -1047,7 +1027,7 @@ this.input.keyboard.on('keyup-M', () => {
 
     if(this.tiempoProgresivo===this.tiempoParaCrearEnemigos){
       this.tiempoParaCrearEnemigos+=10;
-      this.crearEnemigo(this.topeCreacionEnemigos-this.listaEnemigos.length);
+      this.crearEnemigo(this.topeCreacionEnemigos-this.listaEnemigos.countActive(true));
 
       
      // console.log("Creando enemigos segun el tope: ");
@@ -1183,6 +1163,8 @@ this.joystickCursors = this.joyStick.createCursorKeys();
     loop:false,
     volume:1
   });
+
+ 
     }
 
     
@@ -1200,6 +1182,8 @@ create(){
     
     //Generacion de escenario
     this.crearEscenario();
+    this.cargarSonido();
+    
     //cantidad de items a crear
     this.crearItems(1000);//aqui puedo agregar la cantidad de items que quiero crear
 
@@ -1207,11 +1191,14 @@ create(){
     //crear personaje
 
     this.crearEdificios();
+    
     this.crearArboles();
+    
 
      this.cargarBotones();
     this.cargarJoystick();
     this.getPlayer();
+    
     
   
 
@@ -1219,6 +1206,7 @@ create(){
 
     //colisiones en entre items
     this.crearColisiones();
+  
     //this.depurarColisiones();
 
    //creacion de camara;
@@ -1229,9 +1217,9 @@ create(){
     this.crearHUD();
 
     //this.crearAnimaciones();
-    this.cargarSonido();
     
-
+    
+  
     
 
   

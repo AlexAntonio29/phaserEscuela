@@ -1,45 +1,28 @@
 
 
 
-export class Items{
+export class Items extends Phaser.Physics.Arcade.Sprite{
 
 
-    constructor(scene,id,categoria,width=25,height=25,x=0,y=0,textura=""){
+    constructor(scene,id,categoria,width=25,height=25,x=0,y=0,textura,dataItem){
 
+      
+
+          super(scene,x,y,textura);
+
+          scene.add.existing(this);
+    scene.physics.add.existing(this);
+
+    this.puntos=dataItem;
      this.width=width;
      this.height=height;
-     this.x=x;
-     this.y=y;
-     this.scene=scene;
      this.id=id;
      this.categoria=categoria;
-     this.graphics;
+     
 
-    
-    
-
-          
-          //console.log("Scene en items: "+this.scene);
-
-        //this.graphics=scene.add.graphics();
-        //this.setColor(id,categoria);
-       //this.scene.load.image("item","./assets/items/Cascara_platano.jpg"); 
        
       this.setBody(textura);
-       // this.graphics.setOrigin(0);
-        //this.graphics.setDisplaySize(this.i*2,this.j*2);
-        //this.graphics.body.setSize(500, 500);
-        
-        //this.graphics.setOrigins(0);
-        //this.graphics.setDisplaySize(20, 25);
-
-        //this.graphics.fillStyle(0x275EF5,1);//color de fondo
-        /*this.container = scene.add.container(0, 0, [this.graphics]);
-          scene.physics.add.existing(this.container);
-          this.container.body.setImmovable(true);
-          this.container.body.setAllowGravity(false);
-
-          this.container.body.setSize(20,20);*/
+       
         
        
          
@@ -47,11 +30,11 @@ export class Items{
 
     getContainer(){
      //console.log("Dentro de getContainer Items");
-     return this.graphics;
+     return this;
     }
 
     getGraphics(){
-      return this.graphics;
+      return this;
     }
 
     
@@ -59,15 +42,11 @@ export class Items{
 
 
         if(this.categoria==="organico"){
-           
-            
-             
-                    //this.graphics.setTexture("item_basura"+n);
 
-                    this.graphics=this.scene.physics.add.sprite(0,0,"item_basura"+this.id)
+                    this//=this.scene.physics.add.sprite(0,0,"item_basura"+this.id)
                     .setOrigin(0)
                     .setDisplaySize(this.width,this.height)
-                    .setPosition(this.x,this.y)
+                    
                     ;
                 if (!this.scene.anims.exists("item_mov"+this.id)) {
                      this.scene.anims.create({
@@ -78,7 +57,7 @@ export class Items{
           });
         }
 
-    this.graphics.play("item_mov"+this.id);
+    this.play("item_mov"+this.id);
 
 
 
@@ -86,10 +65,10 @@ export class Items{
             else if(this.categoria==="inorganico") {
 
 
-                    this.graphics=this.scene.physics.add.sprite(0,0,"item_basura"+(parseInt(this.id)+6))
+                    this//=this.scene.physics.add.sprite(0,0,"item_basura"+(parseInt(this.id)+6))
                     .setOrigin(0)
                     .setDisplaySize(this.width,this.height)
-                    .setPosition(this.x,this.y)
+                    
                     ;
 
                       if (!this.scene.anims.exists("item_mov"+(parseInt(this.id)+6))) {
@@ -99,15 +78,15 @@ export class Items{
         frameRate: 6,
         repeat: -1
           });}
-    this.graphics.play("item_mov"+(parseInt(this.id)+6));
+    this.play("item_mov"+(parseInt(this.id)+6));
                  
 }
 else {
   
-  this.graphics=this.scene.physics.add.sprite(0,0,n)
+                    this//.scene.physics.add.sprite(0,0,n)
                     .setOrigin(0)
                     .setDisplaySize(this.width,this.height)
-                    .setPosition(this.x,this.y)
+                  
                     ;
                   
 
@@ -115,10 +94,7 @@ else {
 
                  
                     
-//this.graphics.body.setCollideWorldBounds(true);
-          //this.graphics.setTexture('item');
-       // this.graphics.fillCircle(this.i,this.j,this.k);
-        //this.graphics.strokeCircle(this.i,this.j,this.k);
+
 
         
 
@@ -129,18 +105,18 @@ else {
 
 
    setItemPosition(x,y) {
-    //this.graphics.setPosition(x,y);
-    this.graphics.setPosition(x,y);
+    
+    this.setPosition(x,y);
  
     }
 
     setItemMovementX(n=1){
     
-     this.graphics.x=this.graphics.x+n;
+     this.x=this.x+n;
      
     }
      setItemMovementY(){
-     this.graphics.y++;
+     this.y++;
      
     }
 
@@ -150,7 +126,7 @@ else {
 
 
 
-     this.graphics.destroy();
+     this.destroy();
 
      const index = listaItems.indexOf(item);
               if (index !== -1) listaItems.splice(index, 1);

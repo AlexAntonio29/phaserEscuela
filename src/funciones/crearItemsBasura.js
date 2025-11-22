@@ -26,7 +26,7 @@ export function crearItemsBasura(scene,n=1,items_basura,widthEscenario,heightEsc
     if(c===1)
     tipo=itemsOrganicos[seleccion];//igual, se generara aleatorio
     else tipo=itemsInorganicos[seleccion];//igual, se generara aleatorio
-    //Crear cuerpo 
+    
     if(posicionAleatoria){
     x=Math.floor(Math.random() * ((widthEscenario-30) - 0 + 1)) + 0;
     y=Math.floor(Math.random() * ((heightEscenario-30) - 0 + 1)) + 0;
@@ -41,28 +41,40 @@ export function crearItemsBasura(scene,n=1,items_basura,widthEscenario,heightEsc
         }
 
 
-   let cuerpo=new Items(scene,tipo.id, tipo.categoria,40,40,x,y);
+        let textura;
+        let data;
+
+
+        if(tipo.categoria==="organico"){
+
+            textura="item_basura"+tipo.id;
+
+            data=itemsOrganicos[tipo.id-1];
+
+                  }
+            else if(tipo.categoria==="inorganico") {
+                textura="item_mov"+(parseInt(tipo.id)+6);
+                 data=itemsInorganicos[tipo.id-1];
+}
+else {
+
+    textura="reloj";
+  
+                  }
+
+   let item=new Items(scene,tipo.id, tipo.categoria,40,40,x,y,textura,data.puntos);
 
    if(!posicionAleatoria){
     let velocidad=Math.floor(Math.random() * (2000 - 1000 + 1)) + 1000;
    // scene.time.delayedCall(1000, () => {
-    scene.physics.moveToObject(cuerpo.getContainer(), player, velocidad);
+    scene.physics.moveToObject(item, player, velocidad);
     //});
      
    }
     
 
-    //this.cuerpo.setColor(tipo.id, tipo.categoria);
-    
 
-        items_basura.push({
-            'id':Date.now()+i,
-        'id_objeto': tipo.id,
-        'cuerpo': cuerpo,
-        'categoria':tipo.categoria,
-        'puntos':tipo.puntos,
-        'name':tipo.item
-    });
+        items_basura.add(item);
 
   
     }

@@ -108,7 +108,7 @@ export const armas=[
         'id':'8',
         'nombre':'Martillo de raices',
         'ataque':30,
-        'puntos':50, 
+        'puntos':600, 
         'tiempoDisparo':0,
         'velocidad':150, 
         'nivel':3, 
