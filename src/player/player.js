@@ -406,7 +406,7 @@ if (caminar) {
             this.soundGolpe.play();
             
              if(enemigo.getVida()<=0){
-                crearItemsBasura(this.scene,enemigo.dataEnemie.items,this.listaItems,enemigo.getPositionX(),enemigo.getpositionY(),false,this.sprite);
+               // crearItemsBasura(this.scene,enemigo.dataEnemie.items,this.listaItems,enemigo.getPositionX(),enemigo.getpositionY(),false,this.sprite);
              
 
               let x=Math.floor(Math.random() * ((this.widthEscenario-30) - 0 + 1)) + 0;
@@ -518,7 +518,7 @@ if (caminar) {
               break;
         }
 
-        console.log(this.scene.physics.world.colliders.length)
+       // console.log(this.scene.physics.world.colliders.length)
 
         /*
 

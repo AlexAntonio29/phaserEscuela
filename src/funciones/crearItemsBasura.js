@@ -14,7 +14,7 @@ export function crearItemsBasura(scene,n=1,items_basura,widthEscenario,heightEsc
 
 
     
-     for(let i=0;i<=n;i++){
+     for(let i=0;i<n;i++){
 
         let x,y;
          //generar selecion de objeto
@@ -64,17 +64,18 @@ else {
 
    let item=new Items(scene,tipo.id, tipo.categoria,40,40,x,y,textura,data.puntos);
 
+   items_basura.add(item);
+
    if(!posicionAleatoria){
-    let velocidad=Math.floor(Math.random() * (2000 - 1000 + 1)) + 1000;
-   // scene.time.delayedCall(1000, () => {
-    scene.physics.moveToObject(item, player, velocidad);
-    //});
+    
+
+    item.moveToPlayer=true;
      
    }
     
 
 
-        items_basura.add(item);
+        
 
   
     }

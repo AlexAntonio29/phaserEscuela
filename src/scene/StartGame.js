@@ -20,9 +20,9 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
     //aqui se cargan las variables globales desde preload()
     cargarVariablesGlobales(){
 
-      this.tiempo=1000;
+      this.tiempo=100;
       this.tiempoProgresivo=0;//el tiempo progresivo sirve para llevar el tiempo siempre adelante
-      this.tiempoParaCrearEnemigos=10;
+      this.tiempoParaCrearEnemigos=20;
 
      
       //agregar arma
@@ -55,9 +55,10 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
 
     this.estaAtacando=false;//esto me sirve para generar una condicional de tiempo de ataque asi no genera errores
 
-     this.cantidadRelojes=20;
+     this.cantidadRelojes=0;
      //relojes
-     this.listaRelojes=[];
+
+     this.listaRelojes=this.physics.add.group();
 
        //TODO REFEREIDO A ENEMIGOS
 
@@ -65,7 +66,7 @@ export class StartGame extends Phaser.Scene{//cuando inicia la partida
 
     
     this.puntosCreacionEnemigo=10;
-    this.topeCreacionEnemigos=1;
+    this.topeCreacionEnemigos=0;
 
     this.getPotenciadorPuntos=200;
     this.puntosPotenciadorAcumulador=1;
@@ -327,7 +328,7 @@ crearItemReloj(){
      let x=Math.floor(Math.random() * ((this.widthEscenario-30) - 0 + 1)) + 0;
      let y=Math.floor(Math.random() * ((this.heightEscenario-30) - 0 + 1)) + 0;
 
-    this.listaRelojes.push(new itemTiempo(this,null,null,40,40,x,y,"reloj"));
+    this.listaRelojes.add(new itemTiempo(this,null,null,40,40,x,y,"reloj"));
    // this.listaRelojes[i].setItemPosition(x,y);
 
   }
@@ -370,7 +371,7 @@ crearEnemigo(n=1){
    let x=Math.floor(Math.random() * ((this.widthEscenario-30) - 0 + 1)) + 0;
     let y=Math.floor(Math.random() * ((this.heightEscenario-30) - 0 + 1)) + 0;
       
-    let enemigo=new Enemies(this,JSON.parse(JSON.stringify(dataEnemigos[valor])),x,y);
+    let enemigo=new Enemies(this,({...dataEnemigos[valor]}),x,y);
     this.listaEnemigos.add(enemigo);
 
    
@@ -658,7 +659,7 @@ this.physics.add.collider(this.player.getContainer(),this.muros);
 
         contactoPlayerItem(player,item){
 
-          console.log(item.puntos);
+          //console.log(item.puntos);
 
           let numAleatorio=Math.floor(Math.random() * (10 - 1 + 1)) + 1;
 
@@ -770,22 +771,31 @@ this.scene.launch('ScenePotenciador',{scene:this.scene,puntos:this.puntos,player
 
 //colision del tiempo
 
+      contactoReloj(player,reloj){
+          this.sonidoReloj.play();
+        this.powerUp.play();
+        let tiempoExtra=Math.floor(Math.random() * (50 - 10 + 1)) + 10;
+
+        this.tiempo+=tiempoExtra;
+        this.listaRelojes.remove(reloj,true,true);
+      }
+
     collisionRecogerItemTiempo(){
 
      
 
       
-      this.listaRelojes.map(reloj=>{
-      this.physics.add.overlap(reloj.getContainer(),this.player.getContainer(),()=>{
-        this.sonidoReloj.play();
-        this.powerUp.play();
-        let tiempoExtra=Math.floor(Math.random() * (50 - 10 + 1)) + 10;
+      //this.listaRelojes.children.iterate(item=>{});
+      this.physics.add.overlap(
+        this.player.getContainer(),
+        this.listaRelojes,
+        this.contactoReloj,
+        null,this);
+        
 
-        this.tiempo+=tiempoExtra;
-
-        reloj.setRecoger(this.listaRelojes,reloj);
-      })
-      })
+       // reloj.setRecoger(this.listaRelojes,reloj);
+      
+    
 
 
       
@@ -1190,8 +1200,7 @@ create(){
 
     //crear personaje
 
-    this.crearEdificios();
-    
+    this.crearEdificios();  
     this.crearArboles();
     
 
@@ -1202,7 +1211,7 @@ create(){
     
   
 
-    this.crearEnemigo();
+    this.crearEnemigo(0);
 
     //colisiones en entre items
     this.crearColisiones();
@@ -1228,6 +1237,23 @@ create(){
 }
 
 
+movimientoItemToPlayer(){
+
+
+
+  this.items_basura.children.iterate(item=>{
+    if(item.moveToPlayer){
+      //let velocidad=Math.floor(Math.random() * (200 - 100 + 1)) + 100;
+   // scene.time.delayedCall(1000, () => {
+    console.log("moviendo item"+item);
+    this.physics.moveToObject(item, this.player, 100);
+    //});
+    }
+
+  });
+}
+
+
 //el update es todo lo que se corre en tiempo real
 update(time, delta){
 
@@ -1239,7 +1265,7 @@ update(time, delta){
     this.movimientosEnemigo();
    //this.physics.moveToObject(this.enemie.getContainer(), this.player.getContainer(),200);
 
-    
+    //this.movimientoItemToPlayer();
 
 
   

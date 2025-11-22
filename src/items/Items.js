@@ -18,6 +18,7 @@ export class Items extends Phaser.Physics.Arcade.Sprite{
      this.height=height;
      this.id=id;
      this.categoria=categoria;
+     this.moveToPlayer=false;
      
 
        
