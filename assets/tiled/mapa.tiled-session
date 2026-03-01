@@ -3,18 +3,21 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "U:/Escritorio/mapa_phaser/MAPA_FINAL/mapa_scene.json",
+    "activeFile": "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json",
     "expandedProjectPaths": [
+        "32/Pipoya RPG Tileset 32x32",
         ".",
-        "32/Pipoya RPG Tileset 32x32/SampleMap",
         "32",
-        "32/Pipoya RPG Tileset 32x32"
+        "32/Pipoya RPG Tileset 32x32/SampleMap"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "#BaseMap": {
+            "scaleInDock": 1
         },
         "#map-tecmm": {
             "scaleInDock": 1
@@ -100,6 +103,157 @@
         "U:/Documents/GitHub/Cuentas/AlexAntonio29/PhaserEscuela/Tileset-20251018T115521Z-1-001/Tileset/map-tecmm.tsx": {
             "scaleInDock": 1
         },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/Tiled/map1.tmj": {
+            "scale": 0.5,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": -7,
+                "y": 739
+            }
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/Tiled/map1.tmj#A2 - Terrain And Misc": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/Tiled/map1.tmj#A2-TerrainAndMisc": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/Tiled/map1.tmj#Fantasy_Outside_A2": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/Tiled/map1.tmj#Fantasy_Outside_A5": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json": {
+            "scale": 0.5,
+            "selectedLayer": 8,
+            "viewCenter": {
+                "x": 6387,
+                "y": 2381
+            }
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#A2 - Terrain And Misc": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#A2-TerrainAndMisc": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#A3 - Walls And Floors": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#A4 - Walls": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#Arbol_T1": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#Arbol_T2": {
+            "scaleInDock": 1.5,
+            "scaleInEditor": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#BaseMap": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#Big_Decoration": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#CONSTRUCCION2": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#Dungeon_Tiles": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#Fantasy_Outside_A2": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#Fantasy_Outside_A4": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#Fantasy_Outside_A5": {
+            "scaleInDock": 0.75
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#Fantasy_Outside_B": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#Fantasy_Outside_D": {
+            "scaleInDock": 0.5
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#NATURA": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#NATURA2": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#NATURA3": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#Rocks": {
+            "scaleInDock": 3,
+            "scaleInEditor": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#Vegetation": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#Wall_Tiles": {
+            "scaleInDock": 1.5
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#Wall_Variations": {
+            "scaleInDock": 1.5
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#asset_suelo_castillo": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#mainlevbuild": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/base_nexus.json": {
+            "scale": 0.3075320512820513,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1247.0244919228762,
+                "y": 577.1756122980719
+            }
+        },
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/base_nexus.json#asset_suelo_castillo": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/pixelArt/asset_suelo_castillo.tsj": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "U:/Documents/pixelArt/asset_suelo_castillo.tsx": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/pixelArt/base_nexus.json": {
+            "scale": 0.25,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1598,
+                "y": 938
+            }
+        },
+        "U:/Documents/pixelArt/base_nexus.json#asset_suelo_castillo": {
+            "scaleInDock": 1
+        },
+        "U:/Documents/pixelArt/maps/prologo/mapa.tmj": {
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 851,
+                "y": -85
+            }
+        },
         "U:/Escritorio/MAPITA.json": {
             "expandedGroupLayers": [
                 26
@@ -120,14 +274,14 @@
         },
         "U:/Escritorio/mapa_phaser/MAPA_FINAL/mapa_scene.json": {
             "expandedGroupLayers": [
-                39,
-                26
+                26,
+                39
             ],
-            "scale": 0.25,
+            "scale": 1.5,
             "selectedLayer": 18,
             "viewCenter": {
-                "x": 1608,
-                "y": 2022
+                "x": 1276,
+                "y": 456.99999999999994
             }
         },
         "U:/Escritorio/mapa_phaser/MAPA_FINAL/mapa_scene.json#[A]Grass_pipo": {
@@ -229,11 +383,11 @@
             "scaleInEditor": 1
         },
         "U:/Escritorio/mapa_phaser/samplemap.json": {
-            "scale": 0.75,
-            "selectedLayer": 0,
+            "scale": 1,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 1276,
-                "y": 1639.3333333333333
+                "x": 730.5,
+                "y": 960.5
             }
         },
         "U:/Escritorio/mapa_phaser/samplemap.json#[A]Flower_pipo": {
@@ -311,33 +465,38 @@
             "scaleInEditor": 1
         }
     },
-    "last.exportedFilePath": "U:/Escritorio/mapa_phaser",
-    "last.externalTilesetPath": "U:/Escritorio/mapa_phaser/nuevo",
-    "last.imagePath": "U:/Escritorio/mapa_phaser",
+    "last.exportedFilePath": "U:/Documents/pixelArt",
+    "last.externalTilesetPath": "U:/Documents/pixelArt",
+    "last.imagePath": "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/Tiled",
     "map.fixedSize": false,
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
     "map.lastUsedFormat": "json",
-    "map.tileHeight": 32,
-    "map.tileWidth": 32,
+    "map.tileHeight": 48,
+    "map.tileWidth": 48,
     "openFiles": [
-        "U:/Escritorio/mapa_phaser/MAPA_FINAL/mapa_scene.json"
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json"
     ],
     "project": "mapa.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "U:/Escritorio/mapa_phaser/MAPA_FINAL/mapa_scene.json",
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json",
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/Tiled/map1.tmj",
+        "U:/Documents/pixelArt/base_nexus.json",
+        "U:/Documents/pixelArt/maps/prologo/mapa.tmj",
+        "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/base_nexus.json",
+        "U:/Documents/pixelArt/asset_suelo_castillo.tsj",
         "U:/Escritorio/mapa_phaser/samplemap.json",
+        "U:/Escritorio/mapa_phaser/MAPA_FINAL/mapa_scene.json",
         "U:/Escritorio/mapa_phaser/[A]Grass_pipo.tsj",
         "U:/Escritorio/mapita.tmx",
         "U:/Escritorio/mapa_phaser/mapa_scene.json",
-        "32/Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx",
-        "U:/Escritorio/mapa_phaser/nuevo/MAPITA.json",
-        "U:/Escritorio/mapa_phaser/nuevo/[Base]BaseChip_pipo.tsx",
-        "U:/Escritorio/mapa_phaser/nuevo/map-tecmm.tsx",
-        "U:/Escritorio/mapa_phaser/MAPITA.tmx",
-        "U:/Escritorio/mapa_phaser/MAPITA.json",
-        "U:/Escritorio/mapa_phaser/mapa/texture.tsj"
+        "32/Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx"
     ],
+    "tileset.embedInMap": true,
     "tileset.lastUsedFilter": "Archivos de conjuntos de patrones Tiled (*.tsx *.xml)",
-    "tileset.lastUsedFormat": "json"
+    "tileset.lastUsedFormat": "json",
+    "tileset.tileSize": {
+        "height": 48,
+        "width": 48
+    }
 }
