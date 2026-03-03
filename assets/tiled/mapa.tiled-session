@@ -5,10 +5,10 @@
     },
     "activeFile": "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json",
     "expandedProjectPaths": [
+        "32/Pipoya RPG Tileset 32x32/SampleMap",
         "32/Pipoya RPG Tileset 32x32",
         ".",
-        "32",
-        "32/Pipoya RPG Tileset 32x32/SampleMap"
+        "32"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -126,11 +126,11 @@
             "scaleInDock": 1
         },
         "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json": {
-            "scale": 0.5,
+            "scale": 0.25,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 6387,
-                "y": 2381
+                "x": 3806,
+                "y": 4218
             }
         },
         "U:/Documents/GitHub/Cuentas/AlexAntonio29/phaserJuego/phaserEscuela/assets/tiles_maps/nexus/MapaNeexo.json#A2 - Terrain And Misc": {
