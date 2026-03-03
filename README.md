@@ -1,5 +1,5 @@
 # VIDEOJUEGO PARA CONCIENTIZACION DEL MEDIO AMBIENTE
-![cuidado del medio ambiente](https://enlinea.santotomas.cl/web/wp-content/uploads/sites/2/2017/01/greenlungs2-1-800-744x450.jpg)
+![cuidado del medio ambiente]([https://enlinea.santotomas.cl/web/wp-content/uploads/sites/2/2017/01/greenlungs2-1-800-744x450.jpg](https://raw.githubusercontent.com/AlexAntonio29/phaserEscuela/refs/heads/main/Capture.PNG))
 ## Proyecto Final Semestre 5 
 
 ### Intregrantes del Equipo:
